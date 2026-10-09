@@ -1,6 +1,6 @@
 <!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Lula × abstenção · 2º turno 2022 vs 1º turno 2026</title>
+<title>Lula × Bolsonaro · Resumo e mapa por local</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
 <style>
 :root{--bg:#f4f1ea;--card:#fffdf8;--ink:#2a3441;--mut:#6a7380;--line:#e2dccf;--acc:#3b6f8f;--bad:#b4533a;--good:#2f7a6b;--soft:#eef0ec}
@@ -63,52 +63,147 @@ details{margin-top:6px;font-size:12px}summary{cursor:pointer;color:var(--acc)}de
  #map{height:72vh;height:72dvh;min-height:380px}.kv{grid-template-columns:1fr}.bc .v{font-size:17px}
  .bar{flex-wrap:wrap}.bar span.l{width:100%}.bar b{min-width:0}td,th{padding:5px 3px;font-size:12px}
 }
+/* ---- Resumo e Mapa simplificados ---- */
+.hide{display:none!important}body.lock{overflow:hidden}html.nsc,html.nsc body{overscroll-behavior:none}
+#bnav{display:none}.mut{color:var(--mut)}
+h2.sec{font-size:15px;margin:18px 2px 8px}.center{display:flex;justify-content:center;margin:16px 0}
+#s1 .r1,#s1 .r2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.hero{background:#2a3441;color:#fff;border-radius:22px;padding:24px 26px 20px}
+.hero .hl{font-size:12px;font-weight:700;letter-spacing:.1em;color:#fdc65c}
+.hero .hn{display:flex;align-items:baseline;gap:10px;margin-top:4px;color:#fdc65c}
+.hero .hn span{font-size:clamp(64px,9vw,104px);line-height:1;font-weight:700;letter-spacing:-2px}.hero .hn small{font-size:clamp(22px,3vw,32px);font-weight:600}
+.hero .hs{font-size:clamp(15px,2vw,20px);line-height:1.35;margin-top:6px}
+.hero .hv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.2)}
+.hero .hv span{display:block;font-size:12px;color:#d6dbe2}.hero .hv b{font-size:clamp(18px,2.4vw,28px)}
+.msg{padding:22px 24px;border-radius:22px;display:flex;flex-direction:column;justify-content:center}
+.mh{margin:0;font-size:clamp(19px,2.6vw,30px);line-height:1.2}.ms{margin:6px 0 0;color:var(--mut)}
+.split2{display:flex;height:16px;border-radius:8px;overflow:hidden;gap:2px;margin-top:14px}
+.s-ab{background:#f59a3b}.s-na{background:#3b6f8f}.sq{display:inline-block;width:10px;height:10px;border-radius:3px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.wb{min-height:64px;text-align:left;padding:8px 12px;border-radius:14px;background:var(--card);display:flex;flex-direction:column;gap:2px}
+.wb .wl{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--mut)}.wb .wv{display:flex;justify-content:space-between;align-items:baseline;gap:6px}
+.wb b{font-size:clamp(20px,2.2vw,24px)}.wb em{font-style:normal;font-size:12px;color:var(--acc);font-weight:600}
+.where{display:flex;flex-direction:column;gap:12px}
+.wh{min-height:76px;text-align:left;padding:12px 18px;border-radius:18px;background:var(--card);display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:16px;line-height:1.3;width:100%}
+.wh b{font-size:clamp(20px,2.4vw,26px)}.wh i{font-style:normal;font-size:24px;color:var(--acc)}
+.nums{padding:2px 18px}.nrow{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.nrow:last-child{border:0}
+.nrow b{display:block;font-size:15px}.nrow span{display:block;font-size:13px;color:var(--mut);margin-top:2px}.nrow strong{font-size:20px;align-self:center;white-space:nowrap}
+.bad{color:#a8472d}.good{color:#2f7a6b}.dark .bad{color:#e49078}.dark .good{color:#74c4b0}
+.detbtn{min-height:48px;padding:0 24px;border-radius:14px;font-weight:600}
+.ovl{position:fixed;inset:0;z-index:5000;background:rgba(20,26,34,.55);display:flex;align-items:center;justify-content:center;padding:16px}
+.ovl-box{background:var(--bg);color:var(--ink);border-radius:20px;width:min(620px,100%);max-height:88vh;max-height:88dvh;overflow:auto;box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.ov-head{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);z-index:1}
+.ov-head button{border:0;background:transparent;color:var(--acc);font-weight:600;padding:0 10px;min-height:44px}.ov-body{padding:14px 16px 20px}
+.bigline{font-size:clamp(28px,5vw,40px);font-weight:700;letter-spacing:-1px;margin:2px 0 10px}.bigline span{font-size:16px;font-weight:400;color:var(--mut);letter-spacing:0}
+.segm{display:flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);margin:6px 0 10px}.segm button{flex:1;min-height:44px;border:0;border-radius:0;background:var(--card);font-weight:600}.segm button.on{background:var(--ink);color:var(--card)}
+.olist{list-style:none;margin:0;padding:0}.orow{display:grid;grid-template-columns:28px minmax(0,1fr) auto auto;gap:10px;align-items:center;min-height:58px;border-bottom:1px solid var(--line)}
+.orow .rk{font-size:13px;font-weight:600;color:var(--mut)}.orow .on b{font-size:15px;display:block}.orow .on span{font-size:12px;color:var(--mut)}
+.orow .ov{text-align:right}.orow .ov b{font-size:16px;color:#a8472d;display:block}.dark .orow .ov b{color:#e49078}.orow .ov i{display:block;height:6px;border-radius:3px;background:#f59a3b;margin:4px 0 0 auto}
+.orow button{border:0;background:transparent;color:var(--acc);font-weight:600;min-height:44px;padding:0 4px}
+.crow{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+/* mapa */
+.mapwrap{display:flex;gap:16px;align-items:flex-start}.mapcol{flex:1 1 560px;min-width:0;height:716px;position:relative}
+#map{position:absolute;inset:0;border-radius:18px;height:auto;border:1px solid var(--line)}
+.mtop{position:absolute;left:12px;top:12px;width:min(440px,calc(100% - 80px));z-index:1600;display:flex;flex-direction:column;gap:8px}
+.sbwrap{position:relative}.sbox{height:50px;box-sizing:border-box;background:var(--card);color:var(--ink);border-radius:14px;box-shadow:0 2px 10px rgba(42,52,65,.25);display:flex;align-items:center;gap:4px;padding:0 4px 0 14px}
+.sbox input{flex:1;min-width:0;height:44px;border:0;outline:0;background:transparent;font-size:16px;color:var(--ink)}.sbox:focus-within{outline:2px solid var(--acc)}
+.sbtn{width:44px;height:44px;border:0;background:transparent;color:var(--mut);font-size:22px;padding:0;display:flex;align-items:center;justify-content:center}.sbtn.geo{background:var(--soft);color:var(--ink);border-radius:10px}
+#addrList{top:calc(100% + 6px);left:0;right:0;max-height:min(62vh,430px);min-width:0}
+.chip{display:inline-flex;align-items:center;gap:6px;background:#2a3441;color:#fff;border-radius:99px;padding:0 6px 0 12px;min-height:34px;font-size:13px;font-weight:600;box-shadow:0 1px 6px rgba(0,0,0,.25)}
+.chip button{width:28px;height:28px;border:0;background:rgba(255,255,255,.18);border-radius:99px;color:#fff;font-size:16px;line-height:1;padding:0;min-height:0}
+.legend{position:absolute;left:12px;bottom:12px;z-index:1400;width:250px;box-sizing:border-box;background:var(--card);color:var(--ink);border-radius:14px;box-shadow:0 2px 10px rgba(42,52,65,.22);padding:10px 12px;font-size:12px}
+.lg-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.lg-h b{font-size:13px}.lg-h button{border:0;background:transparent;color:var(--acc);font-weight:600;font-size:12px;padding:6px 0 6px 8px;min-height:0}
+.lg-d{display:flex;align-items:center;gap:7px;margin-top:6px}.lg-d i{display:inline-block;border-radius:50%}.lg-l{display:flex;justify-content:space-between;color:var(--mut);margin-top:3px}
+.lg-menu{margin-top:8px;border-top:1px solid var(--line);padding-top:6px}.lg-menu button{display:block;width:100%;text-align:left;border:0;background:transparent;padding:9px 4px;font-size:13px;min-height:36px;color:var(--ink)}.lg-menu button.on{font-weight:700}.lg-menu button.on::before{content:'✓ '}
+.mapexp{position:absolute;right:12px;bottom:12px;z-index:1400;font-size:12px;padding:6px 10px}
+#side{flex:0 1 410px;min-width:300px;max-height:716px;overflow:auto}#sheetHead{display:none}#sheetBody{display:flex;flex-direction:column;gap:12px}
+.scard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}.stag{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--mut)}
+.sname{font-size:15px;font-weight:600;margin-top:2px}.snum{display:flex;align-items:baseline;gap:8px;margin-top:2px}.snum b{font-size:clamp(36px,5vw,46px);line-height:1.05;letter-spacing:-1px}.snum span{font-size:15px;color:var(--mut)}
+.sl{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:15px}
+.sbar{display:flex;justify-content:space-between;align-items:center;margin-top:6px}.sbar button,.lnk{border:0;background:transparent;color:var(--acc);font-weight:600;font-size:14px;min-height:44px;padding:0 8px}
+.sdet{margin-top:6px;padding:10px 12px;background:var(--soft);border-radius:12px;font-size:12px}.sdet div{display:flex;justify-content:space-between;gap:8px;margin-top:3px}.sdet div:first-child{margin-top:0}
+.stitle{font-size:15px;font-weight:700;margin:6px 2px 0}
+.segs{display:flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}.segs button{flex:1;min-height:44px;border:0;border-radius:0;background:var(--card);font-weight:600;font-size:14px}.segs button.on{background:var(--ink);color:var(--card)}
+.glist{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:0 14px}.grow{border-bottom:1px solid var(--line)}.grow:last-child{border:0}
+.gh{width:100%;display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;align-items:center;min-height:68px;padding:8px 0;border:0;background:transparent;text-align:left;color:var(--ink);border-radius:0}
+.gh .rk{font-size:13px;font-weight:600;color:var(--mut)}.gm b{font-size:15px;display:block}.gs{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--mut)}
+.gv{text-align:right}.gv b{font-size:20px;display:block}.gv em{font-style:normal;font-size:11px;color:var(--mut)}
+.gd{margin:0 0 12px 34px;padding:10px 12px;background:var(--soft);border-radius:12px;font-size:12px}.gd div{display:flex;justify-content:space-between;gap:8px;margin-top:3px}.gd .pl{display:block;color:var(--mut);margin-top:3px}
+.more{width:100%;min-height:44px;font-weight:600}
+@media(max-width:899px){.mapwrap{flex-direction:column}.mapcol{flex-basis:auto;width:100%;height:58vh;height:58dvh;min-height:360px}#side{flex-basis:auto;width:100%;max-height:none;overflow:visible}}
+@media(max-width:900px){#s1 .r1,#s1 .r2{grid-template-columns:1fr}}
+@media(max-width:700px){
+ .desk{display:none!important}#t1,#t2{display:none}header{padding:6px 12px;gap:8px;min-height:48px;box-sizing:border-box}h1{font-size:15px}h1 small{display:none}
+ #topnav{margin-left:auto}main{padding:12px 12px 80px}body{padding-bottom:64px}
+ #bnav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));position:fixed;left:0;right:0;bottom:0;height:64px;z-index:2600;background:var(--card);border-top:1px solid var(--line)}
+ .bn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:0;border-radius:0;background:transparent;color:var(--mut);font-size:12px;font-weight:500;min-height:0}.bn.on{color:var(--ink);font-weight:700;box-shadow:inset 0 3px 0 var(--acc)}
+ #s2:not(.hide){position:fixed;left:0;right:0;top:48px;bottom:64px;z-index:1200;background:var(--bg)}
+ main:has(#s2:not(.hide)){padding:0}.mapwrap{display:block;position:relative;height:100%}
+ .mapcol{position:absolute;inset:0;width:auto;height:auto;min-height:0}#map{border-radius:0;border:0}
+ .mtop{left:10px;right:10px;top:10px;width:auto}.leaflet-control-zoom{display:none}
+ .legend{bottom:108px;left:10px;width:236px}#s2.sheetopen .legend{display:none}
+ #side{position:absolute;left:0;right:0;bottom:0;min-width:0;width:auto;max-height:84%;z-index:1500;background:var(--bg);border-radius:20px 20px 0 0;box-shadow:0 -4px 16px rgba(42,52,65,.28);display:flex;flex-direction:column;overflow:hidden;transform:translateY(calc(100% - 96px));transition:transform .25s}
+ #side.open{transform:none}#sheetHead{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:96px;box-sizing:border-box;padding:18px 14px 10px;position:relative;cursor:pointer;flex:none}
+ .hdl{position:absolute;top:8px;left:50%;width:36px;height:4px;margin-left:-18px;border-radius:2px;background:var(--line)}
+ .shl b{display:block;font-size:28px;line-height:1.05;letter-spacing:-.5px}.shl span{font-size:13px;color:var(--mut)}.shb{background:var(--ink);color:var(--card);border-radius:14px;padding:0 14px;min-height:48px;display:flex;align-items:center;font-weight:600;font-size:15px;white-space:nowrap}
+ #sheetBody{overflow:auto;overscroll-behavior:contain;padding:0 12px 16px;flex:1;min-height:0}
+ .two{grid-template-columns:1fr 1fr}.orow{grid-template-columns:24px minmax(0,1fr) auto}.orow button{grid-column:2/4;justify-self:start}
+ .ovl{padding:0;align-items:stretch}.ovl-box{width:100%;max-height:none;height:100%;border-radius:0}
+}
+
 </style></head><body>
 <script>window.onerror=(m,s,l)=>document.body.insertAdjacentHTML('afterbegin','<pre style="background:#fee;color:#900;padding:10px;margin:0;white-space:pre-wrap">Erro no dashboard: '+m+' (linha '+l+')</pre>')</script>
-<header><h1>Lula × abstenção<small>2º turno 2022 → 1º turno 2026 · por local de votação · gerado em 09/10/2026 01:29</small></h1>
-<nav><button id="t1" class="on">Resumo</button><button id="t2">Mapa por local</button><button id="th" title="Alternar tema claro/escuro">◐ Tema</button><button data-x="png" data-k="tela" title="Imagem da aba atual">PNG da tela</button></nav></header>
+<header id="hdr"><h1>Lula × Bolsonaro<small>2º turno 2022 → 1º turno 2026 · por local de votação · gerado em 09/10/2026 09:29</small></h1>
+<nav id="topnav"><button id="t1" class="on">Resumo</button><button id="t2">Mapa por local</button><button id="th" title="Alternar tema claro/escuro" aria-label="Alternar tema claro ou escuro">◐<span class="desk"> Tema</span></button><button class="desk" data-x="png" data-k="tela" title="Imagem da aba atual">PNG da tela</button></nav></header>
 <main>
 <section id="s1">
- <div class="grid k4" id="kpis"></div>
- <div class="grid k2" style="margin-top:12px">
-  <div class="card"><h3><span>Resultado do 1º turno 2026 (votos válidos)</span><span class="xb"><button data-x="png">PNG</button></span></h3><div id="cands"></div></div>
-  <div class="card"><h3><span>Comparativo nacional</span><span id="xcmp"></span></h3><div class="tw"><table id="cmp"></table></div></div>
+ <div class="r1"><section class="hero" id="hero"></section><section class="card msg" id="msg"></section></div>
+ <div class="r2">
+  <div><h2 class="sec">Onde recuperar</h2><div class="where" id="where"></div></div>
+  <div><h2 class="sec">Números nacionais</h2><div class="card nums" id="nums"></div></div>
  </div>
- <div class="grid k2" style="margin-top:12px">
-  <div class="card"><h3><span>Municípios com maior perda estimada para a abstenção (50 primeiros)</span><span id="xtopm"></span></h3><div class="tw tall"><table id="topm"></table></div></div>
-  <div class="card"><h3><span>Bairros com maior perda estimada (50 primeiros)</span><span id="xtopb"></span></h3><div class="tw tall"><table id="topb"></table></div></div>
+ <div class="center"><button id="btDet" class="detbtn" aria-expanded="false">Ver todos os detalhes ▾</button></div>
+ <div id="detalhes" class="hide">
+  <div class="grid k4" id="kpis"></div>
+  <div class="grid k2" style="margin-top:12px">
+   <div class="card"><h3><span>Resultado do 1º turno 2026 (votos válidos)</span><span class="xb"><button data-x="png">PNG</button></span></h3><div id="cands"></div></div>
+   <div class="card"><h3><span>Comparativo nacional</span><span id="xcmp"></span></h3><div class="tw"><table id="cmp"></table></div></div>
+  </div>
+  <p class="note" id="meto"></p>
  </div>
- <p class="note" id="meto"></p>
 </section>
 <section id="s2" class="hide">
- <div class="mrow only-m"><button id="bCtrl">☰ Filtros, busca e exportação</button>
-  <div class="seg"><button id="segM" class="on">Mapa</button><button id="segL">Lista</button></div></div>
- <div id="ctrl">
- <div class="filters">
-  <div class="fld"><span>UF</span><div class="cb" id="cUf"><input role="combobox" aria-label="UF" aria-autocomplete="list" autocomplete="off"><ul class="dd hide" role="listbox"></ul></div></div>
-  <div class="fld"><span>Cidade</span><div class="cb" id="cCity"><input role="combobox" aria-label="Cidade" aria-autocomplete="list" autocomplete="off"><ul class="dd hide" role="listbox"></ul></div></div>
-  <div class="fld"><span>Zona</span><div class="cb" id="cZona"><input role="combobox" aria-label="Zona" aria-autocomplete="list" autocomplete="off"><ul class="dd hide" role="listbox"></ul></div></div>
-  <div class="fld"><span>Bairro</span><div class="cb" id="cBairro"><input role="combobox" aria-label="Bairro" aria-autocomplete="list" autocomplete="off"><ul class="dd hide" role="listbox"></ul></div></div>
-  <label>Colorir/ordenar por<select id="fMet"></select></label>
-  <div class="leg" id="leg"></div>
+ <div class="mapwrap">
+  <div class="mapcol">
+   <div id="map"></div>
+   <div class="mtop">
+    <div class="sbwrap">
+     <div class="sbox">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="addr" role="combobox" aria-label="Buscar cidade, bairro, endereço ou local de votação" aria-autocomplete="list" placeholder="Cidade, bairro, endereço ou local de votação" autocomplete="off">
+      <button id="sClr" class="sbtn hide" aria-label="Limpar busca">×</button>
+      <button id="bGeo" class="sbtn geo" aria-label="Usar minha localização" title="Usar minha localização"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="8"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></button>
+     </div>
+     <ul id="addrList" class="dd hide" role="listbox"></ul>
+    </div>
+    <div id="chips"></div>
+   </div>
+   <div class="legend" id="legend"></div>
+   <button class="mapexp desk" data-x="png" data-k="mapa" title="Baixar imagem do mapa">⤓ Imagem do mapa</button>
+  </div>
+  <aside id="side" aria-label="Resumo">
+   <div id="sheetHead" role="button" tabindex="0" aria-label="Abrir ou fechar o resumo"><div class="hdl"></div><div class="shl"><b id="shNum"></b><span id="shLab"></span></div><span id="shBtn" class="shb">Ver resumo ▲</span></div>
+   <div id="sheetBody"></div>
+  </aside>
  </div>
- <div class="filters">
-  <div class="fld grow"><span>Endereço, bairro, município ou local de votação — ver locais “perto de você”</span><div class="cb"><input id="addr" role="combobox" aria-label="Endereço" aria-autocomplete="list" placeholder="Digite 3+ letras. Ex.: Av. Paulista, 1000, São Paulo" autocomplete="off"><ul id="addrList" class="dd hide" role="listbox"></ul></div></div>
-  <label>Raio<select id="fRad"><option value="1">1 km</option><option value="2" selected>2 km</option><option value="5">5 km</option><option value="10">10 km</option></select></label>
-  <button id="bAddr">Buscar</button><button id="bGeo">📍 Perto de mim</button><button id="bClr" class="hide">Limpar busca</button>
-  <span id="nearmsg" class="sm mut"></span>
- </div>
- <div class="tb"><span>Exportar:</span>
-  <button data-x="xls" data-k="resumo+bairros+locais">Excel completo (resumo, bairros, locais)</button>
-  <button data-x="pdf" data-k="bairros">Bairros PDF</button><button data-x="pdf" data-k="locais">Locais PDF</button>
-  <button data-x="png" data-k="mapa">Mapa PNG</button><button data-x="png" data-k="mapa" data-f="pdf">Mapa PDF</button>
- </div>
- </div>
- <div class="split" data-v="map"><div id="map"></div><div id="side"></div></div>
- <p class="note" id="mapnote"></p>
- <p class="note">Busca de endereço: Nominatim/OpenStreetMap (uma consulta por clique, sem autocompletar). Sugestões de endereço: Photon (OpenStreetMap), uso moderado. A localização do navegador só funciona via http://localhost ou https.</p>
+ <p class="note desk" id="mapnote"></p>
 </section>
 </main>
+<nav id="bnav" aria-label="Navegação principal">
+ <button id="bn1" class="bn on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="4" rx="1.5"/><rect x="13" y="10" width="7" height="10" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/></svg>Resumo</button>
+ <button id="bn2" class="bn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Mapa por local</button>
+</nav>
+<div id="ovl" class="ovl hide"><div class="ovl-box" id="ovlBox" role="dialog" aria-modal="true"></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -151,7 +246,7 @@ let _rm,_rb;const RM=()=>_rm||(_rm=topBy(PA,o=>o.uf+'|'+o.city,Infinity)),RB=()=
 
 /* ---------- EXPORTAÇÃO ---------- */
 const xb=(k,tbl)=>`<span class="xb">${tbl?`<button data-x="pdf" data-k="${k}" title="Baixar PDF">PDF</button><button data-x="xls" data-k="${k}" title="Baixar Excel">Excel</button>`:''}<button data-x="png" title="Baixar imagem">PNG</button></span>`;
-const AGGH=['Aptos 2022','Aptos 2026','Abstenção 2022','Abstenção 2026','Var. abstenção (p.p.)','Lula 2022','Lula 2026','Var. Lula','Lula % válidos 2022','Lula % válidos 2026','Bolsonaro 2022','Bolsonaro 2026','Bolsonaro % válidos 2022','Bolsonaro % válidos 2026','Cury 2026','Renan Santos 2026','Zema 2026','Caiado 2026','Outros 2026','Cury % válidos 2026','Renan Santos % válidos 2026','Zema % válidos 2026','Caiado % válidos 2026','Outros % válidos 2026','Perda estimada (votos de Lula)'];
+const AGGH=['Aptos 2022','Aptos 2026','Abstenção 2022','Abstenção 2026','Var. abstenção (p.p.)','Lula 2022','Lula 2026','Var. Lula','Lula % válidos 2022','Lula % válidos 2026','Bolsonaro 2022','Bolsonaro 2026','Bolsonaro % válidos 2022','Bolsonaro % válidos 2026','Cury 2026','Renan Santos 2026','Zema 2026','Caiado 2026','Outros 2026','Cury % válidos 2026','Renan Santos % válidos 2026','Zema % válidos 2026','Caiado % válidos 2026','Outros % válidos 2026','Votos a recuperar (estimativa)'];
 const AGGT=['n','n','p','p','q','n','n','d','p','p','n','n','p','p','n','n','n','n','n','p','p','p','p','p','n'];
 const aggVals=o=>[o.a22,o.a26,o.r22,o.r26,o.dab,o.l22,o.l26,o.dl,o.p22,o.p26,o.o22,o.o26,o.q22,o.q26,o.cu26,o.rs26,o.ze26,o.ca26,o.ou26,o.pcu,o.prs,o.pze,o.pca,o.pou,o.perda];
 function locSpec(t,rows,dist){const h=['UF','Município','Zona','Bairro','Local de votação','Endereço','Latitude','Longitude',...AGGH],ty=['s','s','s','s','s','s','x','x',...AGGT];
@@ -197,200 +292,250 @@ $('#th').onclick=()=>{root.classList.toggle('dark');try{localStorage.setItem('th
  if(!$('#s2').classList.contains('hide'))drawSoon()};
 
 /* ---------- RESUMO ---------- */
-const a=S.y22,b=S.y26,ar=a.abst/a.aptos,br=b.abst/b.aptos,perdaTot=PA.reduce((s,o)=>s+o.perda,0);
+const a=S.y22,b=S.y26,ar=a.abst/a.aptos,br=b.abst/b.aptos;
+const perdaTot=PA.reduce((s,o)=>s+o.perda,0);
+const mi=(n,d=1)=>{const v=Math.abs(n);return v>=1e6?(n/1e6).toFixed(d).replace('.',',')+' mi':v>=1e3?fmt(n/1e3)+' mil':fmt(n)};
+const miP=n=>{const v=Math.abs(n);return v>=1e6?[(n/1e6).toFixed(1).replace('.',','),'milhões']:v>=1e3?[fmt(n/1e3),'mil']:[fmt(n),'votos']};
+const sgM=n=>(n>0?'+':n<0?'−':'')+mi(Math.abs(n));
+const nan26=Math.max(b.validos-b.lula-b.opp,0),meta=b.opp-b.lula,lossL=a.lula-b.lula;
+const partAbst=Math.max(0,Math.min(perdaTot,Math.max(lossL,0))),partNan=Math.max(lossL,0)-partAbst;
+const top50c=RM().slice(0,50),top50b=RB().slice(0,50);
+const sum50c=top50c.reduce((s,t)=>s+t.o.perda,0),sum50b=top50b.reduce((s,t)=>s+t.o.perda,0);
+const lead=meta>=0,mp=miP(Math.abs(meta));
+$('#hero').innerHTML=`<div class="hl">${lead?'A META':'A VANTAGEM'}</div><div class="hn"><span>${mp[0]}</span><small>${mp[1]}</small></div>
+ <div class="hs">${lead?'de votos separam Lula de Bolsonaro no 1º turno de 2026':'de votos a mais para Lula que para Bolsonaro no 1º turno de 2026'}</div>
+ <div class="hv"><div><span>Bolsonaro</span><b>${mi(b.opp)}</b></div><div><span>Lula</span><b>${mi(b.lula)}</b></div></div>`;
+$('#msg').innerHTML=lossL>0?`<h2 class="mh">${mi(lossL)} de votos de Lula em 2022 não estão com ele agora</h2><p class="ms">Já votaram nele antes: há votos para recuperar.</p>
+ <div class="split2" role="img" aria-label="Divisão estimada entre abstenção e nanicos"><i class="s-ab" style="flex:${partAbst||0.0001}"></i><i class="s-na" style="flex:${partNan||0.0001}"></i></div>
+ <div class="two"><button class="wb" data-ov="abst"><span class="wl"><i class="sq s-ab"></i>Abstenção</span><span class="wv"><b>${mi(partAbst)}</b><em>Detalhes ›</em></span></button>
+ <button class="wb" data-ov="nan"><span class="wl"><i class="sq s-na"></i>Nanicos</span><span class="wv"><b>${mi(partNan)}</b><em>Detalhes ›</em></span></button></div>`
+ :`<h2 class="mh">Lula tem ${mi(-lossL)} votos a mais que em 2022</h2><p class="ms">Ainda assim há votos a recuperar onde a abstenção cresceu: veja abaixo.</p>`;
+$('#where').innerHTML=`<button class="wh" data-ov="cidades"><span><b>${mi(sum50c)}</b> a recuperar nas 50 cidades com mais votos a recuperar</span><i>›</i></button>
+ <button class="wh" data-ov="bairros"><span><b>${mi(sum50b)}</b> a recuperar nos 50 bairros com mais votos a recuperar</span><i>›</i></button>`;
+const nrow=(t,sub,val,cls)=>`<div class="nrow"><div><b>${t}</b><span>${sub}</span></div><strong class="${cls||''}">${val}</strong></div>`;
+$('#nums').innerHTML=nrow('Votos de Lula',`${mi(a.lula)} → ${mi(b.lula)}`,sgM(b.lula-a.lula),b.lula<a.lula?'bad':'good')
+ +nrow('Abstenção',`${mi(a.abst)} → ${mi(b.abst)}`,sgM(b.abst-a.abst),b.abst>a.abst?'bad':'good')
+ +nrow('Nanicos','Cury, Caiado, Renan e todos os demais, exceto Bolsonaro · o 2º turno de 2022 teve só 2 candidatos',mi(nan26),'');
+/* detalhes (tudo o que já existia, sob demanda) */
 const kp=(t,v,s)=>`<div class="card"><h3><span>${t}</span>${xb('',false)}</h3><div class="big">${v}</div><div class="sm mut">${s}</div></div>`;
-$('#kpis').innerHTML=
- kp('Eleitorado apto',fmt(b.aptos),`2022: ${fmt(a.aptos)} · ${sg(b.aptos-a.aptos)} (${pc(b.aptos/a.aptos-1)})`)+
- kp('Abstenção',pc(br),`2022: ${pc(ar)} · <b class="${br>ar?'up':'dn'}">${pp((br-ar)*100)}</b>`)+
- kp('Votos de Lula',fmt(b.lula),`2º turno 2022: ${fmt(a.lula)} · <b class="${b.lula<a.lula?'up':'dn'}">${sg(b.lula-a.lula)}</b>`)+
- kp('Votos de Bolsonaro',fmt(b.opp),`2º turno 2022 (Jair): ${fmt(a.opp)} · <b>${sg(b.opp-a.opp)}</b> (2026: Flávio)`)+
- kp('Perda estimada p/ abstenção',fmt(perdaTot),`votos de Lula · cobre ${pc(S.cover)} dos válidos de 2026`);
+$('#kpis').innerHTML=kp('Eleitorado apto',fmt(b.aptos),`2022: ${fmt(a.aptos)} · ${sg(b.aptos-a.aptos)} (${pc(b.aptos/a.aptos-1)})`)
+ +kp('Abstenção',pc(br),`2022: ${pc(ar)} · <b class="${br>ar?'up':'dn'}">${pp((br-ar)*100)}</b>`)
+ +kp('Votos de Lula',fmt(b.lula),`2º turno 2022: ${fmt(a.lula)} · <b class="${b.lula<a.lula?'up':'dn'}">${sg(b.lula-a.lula)}</b>`)
+ +kp('Votos de Bolsonaro',fmt(b.opp),`2º turno 2022 (Jair): ${fmt(a.opp)} · <b>${sg(b.opp-a.opp)}</b> (2026: Flávio)`)
+ +kp('Votos a recuperar (abstenção)',fmt(perdaTot),`votos de Lula · estimativa · cobre ${pc(S.cover)} dos válidos de 2026`);
 const mx=Math.max(...S.cands.map(c=>c.v));
 $('#cands').innerHTML=S.cands.map(c=>`<div class="bar"><span class="l" title="${esc(c.nome)}">${esc(cap(c.nome))} (${c.n})</span><i style="width:${c.v/mx*45}%"></i><b>${pc(c.v/b.validos)} · ${fmt(c.v)}</b></div>`).join('')+
- `<div class="bar"><span class="l">Outros</span><i style="width:${S.outros/mx*45}%;background:var(--mut)"></i><b>${pc(S.outros/b.validos)} · ${fmt(S.outros)}</b></div>
- <div class="note">Brancos: ${fmt(b.brancos)} · Nulos: ${fmt(b.nulos)}</div>`;
-CMP=[['Eleitores aptos',a.aptos,b.aptos],['Comparecimento',a.aptos-a.abst,b.aptos-b.abst],['Abstenções',a.abst,b.abst],['Votos de Lula',a.lula,b.lula],['Votos de Bolsonaro',a.opp,b.opp],['Votos válidos',a.validos,b.validos],['Brancos',a.brancos,b.brancos],['Nulos',a.nulos,b.nulos]];
-$('#xcmp').innerHTML=xb('cmp',true);$('#xtopm').innerHTML=xb('topm',true);$('#xtopb').innerHTML=xb('topb',true);
+ `<div class="bar"><span class="l">Demais nanicos</span><i style="width:${S.outros/mx*45}%;background:var(--mut)"></i><b>${pc(S.outros/b.validos)} · ${fmt(S.outros)}</b></div><div class="note">Brancos: ${fmt(b.brancos)} · Nulos: ${fmt(b.nulos)}</div>`;
+CMP=[['Eleitores aptos',a.aptos,b.aptos],['Comparecimento',a.aptos-a.abst,b.aptos-b.abst],['Abstenções',a.abst,b.abst],['Votos de Lula',a.lula,b.lula],['Votos de Bolsonaro',a.opp,b.opp],['Nanicos',Math.max(a.validos-a.lula-a.opp,0),nan26],['Votos válidos',a.validos,b.validos],['Brancos',a.brancos,b.brancos],['Nulos',a.nulos,b.nulos]];
+$('#xcmp').innerHTML=xb('cmp',true);
 $('#cmp').innerHTML=`<tr><th></th><th>2º t. 2022</th><th>1º t. 2026</th><th>Δ</th><th>Δ%</th></tr>`+CMP.map(([n,x,y])=>`<tr><td>${n}</td><td>${fmt(x)}</td><td>${fmt(y)}</td><td>${sg(y-x)}</td><td>${x?pc(y/x-1):'–'}</td></tr>`).join('');
-const tm=RM().slice(0,50);
-$('#topm').innerHTML=`<tr><th>Município</th><th>Perda est.</th><th>Abst. 22→26</th><th></th></tr>`+tm.map((t,i)=>
- `<tr><td>${place(t.rs[0])}</td><td>${fmt(t.o.perda)}</td><td>${pc(t.o.r22)} → ${pc(t.o.r26)}</td><td>${t.rs[0].uf==='ZZ'?'<span class="sm mut">sem mapa</span>':`<button class="lk" data-m="${i}">mapa</button>`}</td></tr>`).join('');
-const bt=RB().slice(0,50);
-$('#topb').innerHTML=`<tr><th>Bairro</th><th>Perda est.</th><th>Abst. 22→26</th><th></th></tr>`+bt.map((t,i)=>{const r=t.rs[0];return `<tr><td>${esc(cap(r.bairro))}<div class="sm mut">${esc(r.city)}/${r.uf}</div></td><td>${fmt(t.o.perda)}</td><td>${pc(t.o.r22)} → ${pc(t.o.r26)}</td><td><button class="lk" data-b="${i}">mapa</button></td></tr>`}).join('');
-$('#meto').innerHTML=`<b>Como ler:</b> a <i>perda estimada</i> responde: se os eleitores que a mais deixaram de comparecer em 2026 (acima da taxa de abstenção de 2022) votassem como o eleitorado do local votou em 2022, quantos votos de Lula isso representaria? É uma estimativa contrafactual, não um fato observado. Atenção: o 1º turno de 2026 tem mais candidatos que o 2º turno de 2022, então a queda de % de Lula não é só migração ou abstenção. Os locais são comparados quando foi possível ligá-los entre 2022 e 2026 (cobertura acima); o exterior entra nos totais e no ranking de municípios do Resumo, mas não aparece no mapa, nos filtros nem no ranking de bairros. “Bolsonaro” = Jair Bolsonaro (2022) e Flávio Bolsonaro (2026); em 2026, “Outros” agrupa os demais candidatos além de Lula, Bolsonaro, Cury, Renan Santos, Zema e Caiado. Eleitorado apto de 2026: o TSE informa que 39 registros ficaram também vinculados às seções de origem após transferência temporária (o total efetivo é 39 a menos que o somado por seção).`;
+$('#meto').innerHTML=`<b>Como ler:</b> “votos a recuperar” é uma estimativa: se os eleitores que a mais deixaram de comparecer em 2026 (acima da taxa de abstenção de 2022) votassem como o eleitorado do local votou em 2022, quantos votos de Lula isso representaria? Os 6,5 mi (diferença entre Lula em 2022 e em 2026) são divididos assim: <i>abstenção</i> = essa estimativa; <i>nanicos</i> = o restante. É uma aproximação, não um fato observado: o 1º turno de 2026 tem mais candidatos que o 2º turno de 2022. Só entram locais que foi possível ligar entre 2022 e 2026 (cobertura acima). “Bolsonaro” = Jair Bolsonaro (2022) e Flávio Bolsonaro (2026). Nanicos = todos os candidatos de 2026 exceto Lula e Bolsonaro (Cury, Caiado, Renan Santos, Zema e os demais). O exterior entra nos totais e no ranking de cidades, mas não no mapa. Eleitorado apto de 2026: o TSE informa 39 registros duplicados após transferência temporária.`;
+$('#btDet').onclick=()=>{const d=$('#detalhes'),h=d.classList.toggle('hide');$('#btDet').textContent=h?'Ver todos os detalhes ▾':'Ocultar detalhes ▴';$('#btDet').setAttribute('aria-expanded',String(!h))};
+
+/* ---------- PAINÉIS (lista das 50 e detalhes) ---------- */
+const ovl=$('#ovl'),ovlBox=$('#ovlBox');
+function openOv(h){ovlBox.innerHTML=h;ovl.classList.remove('hide');document.body.classList.add('lock');ovlBox.scrollTop=0}
+function closeOv(){ovl.classList.add('hide');document.body.classList.remove('lock')}
+const ovHead=(xk)=>`<div class="ov-head"><button data-close>‹ Voltar</button>${xk?`<span><button data-x="xls" data-k="${xk}">Excel</button><button data-x="pdf" data-k="${xk}">PDF</button></span>`:''}</div>`;
+function listPanel(kind){const c=kind==='cidades',L=c?top50c:top50b,tot=c?sum50c:sum50b,mxp=Math.max(...L.map(t=>t.o.perda),1);
+ return ovHead(c?'topm':'topb')+`<div class="ov-body"><div class="sm mut">${c?'50 cidades com mais votos a recuperar':'50 bairros com mais votos a recuperar'}</div>
+ <div class="bigline">${mi(tot)} <span>a recuperar</span></div>
+ <div class="segm"><button data-ov="cidades" class="${c?'on':''}">Cidades</button><button data-ov="bairros" class="${c?'':'on'}">Bairros</button></div>
+ <ol class="olist">${L.map((t,i)=>{const r=t.rs[0],o=t.o,nm=c?place(r):`${esc(cap(r.bairro))}<span> · ${place(r)}</span>`;
+  return `<li class="orow"><span class="rk">${i+1}</span><span class="on"><b>${nm}</b><span>abstenção ${pc(o.r22)} → ${pc(o.r26)}</span></span><span class="ov"><b>${mi(o.perda)}</b><i style="width:${Math.max(4,o.perda/mxp*90)}px"></i></span>${r.uf==='ZZ'?'':`<button data-goto="${kind}:${i}">mapa ›</button>`}</li>`}).join('')}</ol></div>`}
+function detPanel(kind){
+ if(kind==='abst')return ovHead('')+`<div class="ov-body"><div class="sm mut">ABSTENÇÃO</div><div class="bigline">${mi(partAbst)} <span>de votos de Lula a recuperar</span></div>
+  <p>A abstenção <b>cresceu</b> de <b>${pc(ar)}</b> para <b>${pc(br)}</b>: <b>${mi(b.abst-a.abst)}</b> eleitores a mais deixaram de votar.</p>
+  <p class="sm mut">Estimativa: se os eleitores que a mais se abstiveram (acima da taxa de 2022) votassem como o local votou em 2022, esse seria o número de votos de Lula.</p>
+  <button class="wh" data-ov="cidades"><span>Ver as 50 cidades com mais votos a recuperar</span><i>›</i></button></div>`;
+ const nl=S.cands.filter(c=>c.nome!=='Lula'&&c.nome!=='Bolsonaro');
+ return ovHead('')+`<div class="ov-body"><div class="sm mut">NANICOS</div><div class="bigline">${mi(partNan)} <span>de votos de Lula a recuperar (estimativa)</span></div>
+  <p>Em 2026, <b>${mi(nan26)}</b> votos válidos (${pc(nan26/b.validos)}) foram para nanicos. O 2º turno de 2022 teve só 2 candidatos.</p>
+  ${nl.map(c=>`<div class="crow"><span>${esc(c.nome)}</span><b>${mi(c.v)} · ${pc(c.v/b.validos)}</b></div>`).join('')}
+  <div class="crow"><span>Demais nanicos</span><b>${mi(S.outros)} · ${pc(S.outros/b.validos)}</b></div>
+  <p class="sm mut" style="margin-top:10px">Os votos de Lula atribuídos aos nanicos são o que restou da diferença entre 2022 e 2026 depois de descontada a estimativa da abstenção.</p></div>`}
+document.addEventListener('click',e=>{
+ const o=e.target.closest('[data-ov]');if(o){openOv(o.dataset.ov==='abst'||o.dataset.ov==='nan'?detPanel(o.dataset.ov):listPanel(o.dataset.ov));return}
+ if(e.target.closest('[data-close]')||e.target===ovl){closeOv();return}
+ const g=e.target.closest('[data-goto]');if(g){const [k,i]=g.dataset.goto.split(':'),r=(k==='cidades'?top50c:top50b)[+i].rs[0];gotoMap({uf:r.uf,city:r.city,bairro:k==='cidades'?'':r.bairro})}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!ovl.classList.contains('hide'))closeOv()});
 
 /* ---------- MAPA ---------- */
-const f={uf:'',city:'',zona:'',bairro:''},CAPN=2000,CAPF=3500;
-const byUf=new Map(),byCity=new Map(),push=(m,k,o)=>{let a=m.get(k);if(!a)m.set(k,a=[]);a.push(o)};
+const f={uf:'',city:'',bairro:''},CAPN=2000,CAPF=3500,RAD=2;let mk='perda',vtab='',pageN=30;
+const nrm=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const MOB=()=>matchMedia('(max-width:700px)').matches;
+const UFN={AC:'Acre',AL:'Alagoas',AP:'Amapá',AM:'Amazonas',BA:'Bahia',CE:'Ceará',DF:'Distrito Federal',ES:'Espírito Santo',GO:'Goiás',MA:'Maranhão',MT:'Mato Grosso',MS:'Mato Grosso do Sul',MG:'Minas Gerais',PA:'Pará',PB:'Paraíba',PR:'Paraná',PE:'Pernambuco',PI:'Piauí',RJ:'Rio de Janeiro',RN:'Rio Grande do Norte',RS:'Rio Grande do Sul',RO:'Rondônia',RR:'Roraima',SC:'Santa Catarina',SP:'São Paulo',SE:'Sergipe',TO:'Tocantins'};
+const ufName=u=>UFN[u]||u;
+const byUf=new Map(),byCity=new Map(),push=(m,k,o)=>{let x=m.get(k);if(!x)m.set(k,x=[]);x.push(o)};
 P.forEach(o=>{push(byUf,o.uf,o);push(byCity,o.uf+'|'+o.city,o)});
 const srt=v=>v.sort((x,y)=>String(x).localeCompare(String(y),'pt',{numeric:true}));
 const uniq=(rows,k)=>[...new Set(rows.map(o=>o[k]))],UFS=srt(uniq(P,'uf'));
 const cityRows=()=>f.city?byCity.get(f.uf+'|'+f.city)||[]:[];
-const nrm=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-const MOB=()=>matchMedia('(max-width:700px)').matches;
-function combo(box,onPick){
- const inp=box.querySelector('input'),ul=box.querySelector('ul');let opts=[],cur='',list=[],hi=-1,isOpen=false;
- const paint=()=>{ul.innerHTML=list.length?list.map((o,i)=>`<li role="option" data-i="${i}" class="${i===hi?'on':''}${o.v===cur?' sel':''}">${esc(o.t)}</li>`).join(''):'<li class="none">Nada encontrado</li>';const e=ul.querySelector('.on');if(e)e.scrollIntoView({block:'nearest'})};
- const filt=q=>{const n=nrm(q);if(!n)return opts.slice(0,300);return opts.filter(o=>o.v!==''&&o.n.includes(n)).sort((x,y)=>y.n.startsWith(n)-x.n.startsWith(n)).slice(0,200)};
- const openL=q=>{list=filt(q);hi=list.length?Math.max(0,list.findIndex(o=>o.v===cur&&!q)):-1;ul.classList.remove('hide');isOpen=true;paint()};
- const close=()=>{ul.classList.add('hide');isOpen=false;inp.value=cur===''?'':(opts.find(o=>o.v===cur)||{t:cur}).t};
- const pick=i=>{const o=list[i];if(!o)return;cur=o.v;ul.classList.add('hide');isOpen=false;inp.value=cur;inp.blur();onPick(cur)};
- inp.addEventListener('focus',()=>{inp.select();openL('')});
- inp.addEventListener('input',()=>openL(inp.value));
- inp.addEventListener('keydown',e=>{
-  if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();if(!isOpen)return openL(inp.value);hi=list.length?(hi+(e.key==='ArrowDown'?1:-1)+list.length)%list.length:-1;paint()}
-  else if(e.key==='Enter'){e.preventDefault();if(isOpen)pick(hi)}
-  else if(e.key==='Escape'){close();inp.blur()}});
- inp.addEventListener('blur',()=>setTimeout(close,120));
- ul.addEventListener('pointerdown',e=>{const li=e.target.closest('li[data-i]');if(!li)return;e.preventDefault();pick(+li.dataset.i)});
- return {set(vals,c,all,dis){opts=[{v:'',t:all,n:''},...vals.map(x=>({v:String(x),t:String(x),n:nrm(x)}))];cur=String(c||'');inp.value=cur;inp.placeholder=all;inp.disabled=!!dis;if(isOpen)close()}}
-}
-const ORD=['uf','city','zona','bairro'];
-const CB={uf:combo($('#cUf'),v=>setF('uf',v)),city:combo($('#cCity'),v=>setF('city',v)),zona:combo($('#cZona'),v=>setF('zona',v)),bairro:combo($('#cBairro'),v=>setF('bairro',v))};
-function setF(k,v){clearNear();f[k]=v;ORD.slice(ORD.indexOf(k)+1).forEach(x=>f[x]='');refill();render(true)}
-function refill(){
- CB.uf.set(UFS,f.uf,'Todas');
- CB.city.set(f.uf?srt(uniq(byUf.get(f.uf)||[],'city')):[],f.city,f.uf?'Todas as cidades':'Escolha uma UF',!f.uf);
- const cr=cityRows();
- CB.zona.set(srt(uniq(cr,'zona')),f.zona,f.city?'Todas as zonas':'—',!f.city);
- CB.bairro.set(srt(uniq(f.zona?cr.filter(o=>String(o.zona)===f.zona):cr,'bairro')),f.bairro,f.city?'Todos os bairros':'—',!f.city)}
-$('#fMet').innerHTML=Object.entries(M).map(([k,m])=>`<option value="${k}">${m.n}</option>`).join('');
-const map=L.map('map',{preferCanvas:true}).setView([-14.2,-51.9],4);
+M.perda.n='Votos a recuperar';M.dl.n='Votação de Lula caiu';M.dab.n='Abstenção cresceu';
+const map=L.map('map',{preferCanvas:true,zoomControl:false}).setView([-14.2,-51.9],4);L.control.zoom({position:'topright'}).addTo(map);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,crossOrigin:true,referrerPolicy:'origin-when-cross-origin',attribution:'© OpenStreetMap contributors'}).addTo(map);
 if(location.protocol==='file:')document.body.insertAdjacentHTML('afterbegin','<div style="background:#fff3cd;color:#664d03;padding:8px 20px;font-size:13px">O OpenStreetMap bloqueia o mapa quando o arquivo é aberto direto do disco (file://). Rode <b>python -m http.server 8000</b> nesta pasta e abra <b>http://localhost:8000/dashboard_lula_abstencao.html</b>.</div>');
 const lay=L.featureGroup().addTo(map),nearLay=L.layerGroup().addTo(map),tipEl=L.tooltip({direction:'top',offset:[0,-8]});
-const tip=o=>`<b>${esc(o.nm)}</b><br>${esc(o.end)}<br>${esc(cap(o.bairro))} · ${esc(o.city)}/${o.uf} · Zona ${o.zona}${o.dist!=null&&near?`<br>Distância: ${o.dist.toFixed(2).replace('.',',')} km`:''}<hr style="margin:4px 0">
- Perda est.: <b>${fmt(o.perda)}</b> votos de Lula<br>Lula: ${fmt(o.l22)} → ${fmt(o.l26)} (${sg(o.dl)})<br>Bolsonaro: ${fmt(o.o22)} → ${fmt(o.o26)}<br>
- Abstenção: ${pc(o.r22)} → ${pc(o.r26)} (${pp(o.dab)})<br>Aptos: ${fmt(o.a22)} → ${fmt(o.a26)}`;
+const arrow=(up,good,sz=14)=>`<svg width="${sz}" height="${sz}" viewBox="0 0 14 14" role="img" aria-label="${up?'subiu':'caiu'}" style="flex:none"><path d="${up?'M7 2l6 9H1z':'M7 12L1 3h12z'}" fill="${good?'#2f7a6b':'#a8472d'}"/></svg>`;
+const absTxt=o=>{const up=o.dab>0;return `${arrow(up,!up,16)}<span><b>A abstenção ${up?'cresceu':'caiu'}</b> <span class="mut">${pc(o.r22)} → ${pc(o.r26)}</span></span>`};
+const lulaTxt=o=>{const up=o.dl>0;return `${arrow(up,up,16)}<span><b>A votação de Lula ${up?'aumentou':'caiu'}</b> <span class="mut">${mi(o.l22)} → ${mi(o.l26)}</span></span>`};
+const absSh=o=>{const up=o.dab>0;return `${arrow(up,!up,11)}abstenção ${up?'cresceu':'caiu'} ${Math.abs(o.dab).toFixed(1).replace('.',',')} p.p.`};
+const lulaSh=o=>{const up=o.dl>0;return `${arrow(up,up,11)}votação de Lula ${up?'aumentou':'caiu'}`};
+const tip=o=>`<b>${esc(o.nm)}</b><br>${esc(o.end)}<br>${esc(cap(o.bairro))} · ${esc(o.city)}/${o.uf}${near&&o.dist!=null?`<br>A ${o.dist.toFixed(2).replace('.',',')} km`:''}<hr style="margin:4px 0">
+ <b>${mi(o.perda)}</b> votos a recuperar<br>${absSh(o)}<br>${lulaSh(o)} (${mi(o.l22)} → ${mi(o.l26)})`;
 if(matchMedia('(hover:hover)').matches)lay.on('mouseover',e=>tipEl.setLatLng(e.latlng).setContent(tip(e.layer.o)).addTo(map)).on('mouseout',()=>map.removeLayer(tipEl));
 lay.on('click',e=>{map.removeLayer(tipEl);L.popup({maxWidth:300}).setLatLng(e.latlng).setContent(tip(e.layer.o)).openOn(map)});
-let shownN=40,missing=0,tmr;
+let missing=0,tmr,LST=[],SCOPE=null;
 const hav=(la1,lo1,la2,lo2)=>{const p=Math.PI/180,x=Math.sin((la2-la1)*p/2)**2+Math.cos(la1*p)*Math.cos(la2*p)*Math.sin((lo2-lo1)*p/2)**2;return 12742*Math.asin(Math.sqrt(x))};
 function nearRows(){const {lat,lon,r}=near,dl=r/111,dn=r/(111*Math.cos(lat*Math.PI/180)),out=[];
  for(const o of P){if(o.lat==null||Math.abs(o.lat-lat)>dl||Math.abs(o.lon-lon)>dn)continue;const d=hav(lat,lon,o.lat,o.lon);if(d<=r){o.dist=d;out.push(o)}}return out}
-function selRows(){if(near)return nearRows();let r=f.city?cityRows():f.uf?byUf.get(f.uf)||[]:P;
- if(f.zona)r=r.filter(o=>String(o.zona)===f.zona);if(f.bairro)r=r.filter(o=>o.bairro===f.bairro);return r}
+function selRows(){if(near)return nearRows();let r=f.city?cityRows():f.uf?byUf.get(f.uf)||[]:P;if(f.bairro)r=r.filter(o=>o.bairro===f.bairro);return r}
 const drawSoon=()=>{clearTimeout(tmr);tmr=setTimeout(drawMap,60)};
-function drawMap(){const k=$('#fMet').value,fn=M[k].f,bd=map.getBounds(),S_=bd.getSouth(),N_=bd.getNorth(),W_=bd.getWest(),E_=bd.getEast(),
+function drawMap(){const fn=M[mk].f,bd=map.getBounds(),S_=bd.getSouth(),N_=bd.getNorth(),W_=bd.getWest(),E_=bd.getEast(),
  cap_=(f.uf||f.city||near)?CAPF:CAPN,sh=[],stroke=DARK()?'#11161b':'#fff';
  for(const o of cur){if(o.lat>=S_&&o.lat<=N_&&o.lon>=W_&&o.lon<=E_){sh.push(o);if(sh.length>=cap_)break}}
  lay.clearLayers();const mxv=cur.length?Math.max(fn(cur[0]),1):1;
- for(let i=sh.length-1;i>=0;i--){const o=sh[i],v=fn(o),m=L.circleMarker([o.lat,o.lon],{radius:3+9*Math.sqrt(v/mxv),color:stroke,weight:.7,fillColor:colr(v,k),fillOpacity:.88});m.o=o;lay.addLayer(m)}
- $('#mapnote').textContent=(sh.length>=cap_?`Mostrando os ${fmt(cap_)} locais de maior valor na área visível (${fmt(cur.length)} com coordenadas no filtro). Aproxime o zoom ou filtre para ver os demais. `:'')+
-  (missing?`${fmt(missing)} local(is) sem coordenadas aparecem só na lista.`:'')}
+ for(let i=sh.length-1;i>=0;i--){const o=sh[i],v=fn(o),m=L.circleMarker([o.lat,o.lon],{radius:3+9*Math.sqrt(v/mxv),color:stroke,weight:.7,fillColor:colr(v,mk),fillOpacity:.88});m.o=o;lay.addLayer(m)}
+ $('#mapnote').textContent=(sh.length>=cap_?`Mostrando os ${fmt(cap_)} pontos com mais votos a recuperar na área visível. Aproxime o zoom ou busque uma cidade para ver os demais. `:'')+(missing?`${fmt(missing)} local(is) sem coordenadas aparecem só no resumo.`:'')}
 map.on('moveend',drawSoon);
-function boundsOf(rs){let a=90,b=180,c=-90,d=-180;rs.forEach(o=>{if(o.lat<a)a=o.lat;if(o.lat>c)c=o.lat;if(o.lon<b)b=o.lon;if(o.lon>d)d=o.lon});return [[a,b],[c,d]]}
-const mval=(o,k)=>k==='perda'?o.perda:k==='dl'?Math.max(-o.dl,0):Math.max(o.dab,0);
-function sumCard(s){const o=s.o,R=[
- ['Eleitores aptos',fmt(o.a22),fmt(o.a26),sg(o.a26-o.a22)],['Abstenção',pc(o.r22),pc(o.r26),pp(o.dab)],
- ['Votos de Lula',fmt(o.l22),fmt(o.l26),sg(o.dl)],['Votos de Bolsonaro',fmt(o.o22),fmt(o.o26),sg(o.o26-o.o22)],
- ['Lula % válidos',pc(o.p22),pc(o.p26),pp((o.p26-o.p22)*100)],['Bolsonaro % válidos',pc(o.q22),pc(o.q26),pp((o.q26-o.q22)*100)],
- ['Zema % válidos','—',pc(o.pze),''],['Caiado % válidos','—',pc(o.pca),''],['Renan Santos % válidos','—',pc(o.prs),''],['Cury % válidos','—',pc(o.pcu),''],['Outros % válidos','—',pc(o.pou),''],
- ['Perda estimada p/ abstenção','—',fmt(o.perda)+' votos','']];
- return `<div class="card"><h3><span>${s.escopo}: ${esc(s.nome)}</span>${xb('resumo',true)}</h3>
- <table><tr><th></th><th>2º t. 2022</th><th>1º t. 2026</th><th>Variação</th></tr>${R.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join('')}</table>
- <div class="sm mut" style="margin-top:6px">${fmt(o.n)} local(is) comparável(is)${s.top.length?` · maiores perdas em ${s.sub}: ${s.top.map(t=>`${esc(cap(t.rs[0][s.key]))} (${fmt(t.o.perda)})`).join(', ')}`:''}</div></div>`}
-function nearList(){if(!near)return'';const L12=rowsAll.slice().sort((x,y)=>x.dist-y.dist).slice(0,12);
- return `<div class="card"><h3><span>Locais mais próximos (raio de ${near.r} km)</span>${xb('locais',true)}</h3>${L12.map(o=>`<div class="li"><b>${esc(o.nm)}</b> <span class="mut">· ${o.dist.toFixed(2).replace('.',',')} km</span><br><span class="sm mut">${esc(o.end)} · ${esc(cap(o.bairro))}</span><br><span class="sm">Abst. ${pc(o.r22)} → ${pc(o.r26)} · Lula ${sg(o.dl)} · perda est. ${fmt(o.perda)}</span></div>`).join('')||'<div class="sm mut">Nenhum local comparável neste raio.</div>'}</div>`}
-function card(G,gi,k){const o=G.o,r0=G.rs[0],v=mval(o,k);
- return `<div class="bc"><div class="h" data-g="${gi}"><div><b>${esc(cap(r0.bairro))}</b><div class="sm mut">${esc(r0.city)}/${r0.uf}</div></div><div style="text-align:right"><div class="v">${k==='dab'?v.toFixed(1).replace('.',',')+' p.p.':fmt(v)}</div><div class="sm mut">${k==='perda'?'votos de Lula (est.)':k==='dl'?'votos de Lula a menos':'de aumento'}</div></div></div>
- <div class="kv"><span>Abstenção: ${pc(o.r22)} → ${pc(o.r26)} <b class="${o.dab>0?'up':'dn'}">(${pp(o.dab)})</b></span><span>Lula: ${fmt(o.l22)} → ${fmt(o.l26)} <b class="${o.dl<0?'up':'dn'}">(${sg(o.dl)})</b></span>
- <span>Lula % válidos: ${pc(o.p22)} → ${pc(o.p26)}</span><span>Bolsonaro % válidos: ${pc(o.q22)} → ${pc(o.q26)}</span>
- <span style="grid-column:1/-1">2026, % válidos: Zema ${pc(o.pze)} · Caiado ${pc(o.pca)} · Renan Santos ${pc(o.prs)} · Cury ${pc(o.pcu)} · Outros ${pc(o.pou)}</span>
- <span>Aptos: ${fmt(o.a22)} → ${fmt(o.a26)} (${sg(o.a26-o.a22)})</span><span>${o.n} local(is) de votação</span></div>
- <details data-g="${gi}"><summary>Ver locais e endereços</summary><ul></ul></details><div class="xr">${xb('',false)}</div></div>`}
-function renderSide(){const k=$('#fMet').value;
- $('#side').innerHTML=SC.map(sumCard).join('')+nearList()+
- `<div class="sm mut" style="margin:4px 0 8px">${fmt(groups.length)} bairro(s) · ordenado por: ${M[k].n}</div>`+
- groups.slice(0,shownN).map((G,i)=>card(G,i,k)).join('')+
- (groups.length>shownN?`<button id="more" style="width:100%;padding:9px">Mostrar mais (${fmt(groups.length-shownN)} restantes)</button>`:'')}
+function boundsOf(rs){let a_=90,b_=180,c_=-90,d_=-180;rs.forEach(o=>{if(o.lat<a_)a_=o.lat;if(o.lat>c_)c_=o.lat;if(o.lon<b_)b_=o.lon;if(o.lon>d_)d_=o.lon});return [[a_,b_],[c_,d_]]}
+const mv=o=>mk==='perda'?[mi(o.perda),'a recuperar']:mk==='dl'?[mi(Math.max(-o.dl,0)),'votos a menos']:[Math.max(o.dab,0).toFixed(1).replace('.',',')+' p.p.','a mais'];
+function scopeOf(){
+ if(near)return{kind:'near',tag:'PERTO DE',name:near.label.split(',')[0]+' · '+RAD+' km',o:agg(rowsAll)};
+ if(f.bairro)return{kind:'bairro',tag:'BAIRRO',name:cap(f.bairro)+' · '+f.city+'/'+f.uf,o:agg(rowsAll)};
+ if(f.city)return{kind:'city',tag:'CIDADE',name:f.city+'/'+f.uf,o:agg(rowsAll)};
+ if(f.uf)return{kind:'uf',tag:'ESTADO',name:ufName(f.uf)+' ('+f.uf+')',o:agg(rowsAll)};
+ return{kind:'br',tag:'BRASIL',name:'Brasil (sem exterior)',o:agg(rowsAll)}}
+const tabsFor=sc=>sc.kind==='uf'?[['uf','Estado'],['cities','Cidades']]:sc.kind==='city'?[['uf','Estado'],['city','Cidade'],['bairros','Bairros']]:[];
+const defView=sc=>sc.kind==='uf'?'uf':sc.kind==='city'?'city':'main';
+function cardHtml(sc,idx){const o=sc.o;
+ return `<div class="scard"><div class="stag">${sc.tag}</div><div class="sname">${esc(sc.name)}</div>
+ <div class="snum"><b>${mi(o.perda)}</b><span>votos a recuperar</span></div>
+ <div class="sl">${absTxt(o)}</div><div class="sl">${lulaTxt(o)}</div>
+ <div class="sbar"><button data-det="${idx}" aria-expanded="false">Ver detalhes ▾</button><span><button data-x="xls" data-k="resumo+bairros+locais">Excel</button><button data-x="pdf" data-k="bairros">PDF</button></span></div>
+ <div class="sdet hide" id="sdet${idx}"><div><span>Eleitores aptos</span><b>${mi(o.a22)} → ${mi(o.a26)}</b></div><div><span>Lula, % dos válidos</span><b>${pc(o.p22)} → ${pc(o.p26)}</b></div>
+ <div><span>Bolsonaro, % dos válidos</span><b>${pc(o.q22)} → ${pc(o.q26)}</b></div><div><span>Nanicos, % dos válidos (2026)</span><b>${pc(1-o.p26-o.q26)}</b></div>
+ <div><span>Zema · Caiado · Renan · Cury</span><b>${pc(o.pze)} · ${pc(o.pca)} · ${pc(o.prs)} · ${pc(o.pcu)}</b></div><div><span>Locais de votação</span><b>${fmt(o.n)}</b></div></div></div>`}
+function gRow(G,i,mode){const o=G.o,r=G.rs[0],idx=LST.push({G,mode})-1,v=mv(o),
+ nm=mode==='city'?esc(r.city)+(f.uf?'':'/'+r.uf):esc(cap(r.bairro))+(f.city?'':`<span class="mut" style="font-weight:400"> · ${esc(r.city)}/${r.uf}</span>`);
+ return `<div class="grow"><button class="gh" data-g="${idx}" aria-expanded="false"><span class="rk">${i+1}</span><span class="gm"><b>${nm}</b><span class="gs">${absSh(o)}</span><span class="gs">${lulaSh(o)}</span></span><span class="gv"><b>${v[0]}</b><em>${v[1]}</em></span></button><div class="gd hide"></div></div>`}
+function gDet(G,mode){const o=G.o,top3=[...G.rs].sort((x,y)=>y.perda-x.perda).slice(0,3);
+ return `<div><span>Eleitores aptos</span><b>${mi(o.a22)} → ${mi(o.a26)}</b></div><div><span>Bolsonaro, % dos válidos</span><b>${pc(o.q22)} → ${pc(o.q26)}</b></div><div><span>Nanicos, % dos válidos (2026)</span><b>${pc(1-o.p26-o.q26)}</b></div>
+ <div><span>${o.n} local(is) de votação</span><b></b></div>${top3.map(x=>`<span class="pl">${esc(x.nm)} · ${esc(x.end)}</span>`).join('')}
+ <div style="margin-top:8px"><button class="lnk" data-fly="${LST.findIndex(z=>z.G===G)}">Ver no mapa</button></div>`}
+function pRow(o,i,dist){const idx=LST.push({o,mode:'pt'})-1,v=mv(o);
+ return `<div class="grow"><button class="gh" data-pt="${idx}"><span class="rk">${i+1}</span><span class="gm"><b>${esc(o.nm)}</b><span class="gs">${esc(o.end)}${dist?' · '+o.dist.toFixed(2).replace('.',',')+' km':''}</span><span class="gs">${absSh(o)}</span></span><span class="gv"><b>${v[0]}</b><em>${v[1]}</em></span></button></div>`}
+function gList(rows,keyf,mode,n,extra){const fn=M[mk].f,gs=topBy(rows,keyf,Infinity);if(mk!=='perda')gs.sort((x,y)=>fn(y.o)-fn(x.o));
+ let h=`<div class="glist">${gs.slice(0,n).map((G,i)=>gRow(G,i,mode)).join('')}</div>`;
+ if(gs.length>n)h+=extra?`<button class="more" ${extra}>Ver todos (${fmt(gs.length)}) ›</button>`:`<button class="more" data-more>Mostrar mais (${fmt(gs.length-n)})</button>`;return h}
+function renderSheet(){
+ const sc=SCOPE=scopeOf();SC=[{escopo:sc.tag,nome:sc.name,o:sc.o}];LST=[];
+ $('#shNum').textContent=mi(sc.o.perda);$('#shLab').textContent='votos a recuperar · '+sc.name.split(' · ')[0];
+ const tabs=tabsFor(sc);if(!tabs.some(t=>t[0]===vtab)&&vtab!=='main')vtab=defView(sc);if(!tabs.length)vtab='main';
+ let h=tabs.length?`<div class="segs" role="tablist">${tabs.map(t=>`<button role="tab" data-vt="${t[0]}" class="${t[0]===vtab?'on':''}">${t[1]}</button>`).join('')}</div>`:'';
+ const bk=o=>o.uf+'|'+o.city+'|'+o.bairro,ck=o=>o.uf+'|'+o.city,validB=rs=>rs.filter(o=>o.bairro&&o.bairro[0]!=='(');
+ if(sc.kind==='br')h+=cardHtml(sc,0)+`<div class="stitle">Cidades com mais votos a recuperar</div>`+gList(P,ck,'city',pageN)+`<p class="sm mut">Digite uma cidade, bairro ou endereço na busca para filtrar o mapa.</p>`;
+ else if(sc.kind==='uf'){ if(vtab==='uf')h+=cardHtml(sc,0)+`<div class="stitle">Cidades com mais votos a recuperar</div>`+gList(rowsAll,ck,'city',5,'data-vt="cities"'); else h+=`<div class="stitle">Cidades do estado</div>`+gList(rowsAll,ck,'city',pageN)}
+ else if(sc.kind==='city'){
+  if(vtab==='uf'){const ur=byUf.get(f.uf)||[];h+=cardHtml({tag:'ESTADO',name:ufName(f.uf)+' ('+f.uf+')',o:agg(ur)},0)+`<div class="stitle">Cidades do estado com mais votos a recuperar</div>`+gList(ur,ck,'city',5)}
+  else if(vtab==='city')h+=cardHtml(sc,0)+`<div class="stitle">Bairros com mais votos a recuperar</div>`+gList(validB(rowsAll),bk,'bairro',3,'data-vt="bairros"');
+  else h+=`<div class="stitle">Bairros de ${esc(f.city)}</div>`+gList(validB(rowsAll),bk,'bairro',pageN)}
+ else if(sc.kind==='bairro'){const fn=M[mk].f,L2=[...rowsAll].sort((x,y)=>fn(y)-fn(x));h+=cardHtml(sc,0)+`<div class="stitle">Locais de votação</div><div class="glist">${L2.slice(0,pageN).map((o,i)=>pRow(o,i,false)).join('')}</div>`+(L2.length>pageN?`<button class="more" data-more>Mostrar mais (${L2.length-pageN})</button>`:'')}
+ else{const L2=[...rowsAll].sort((x,y)=>x.dist-y.dist);h+=cardHtml(sc,0)+`<div class="stitle">Locais mais próximos</div><div class="glist">${L2.slice(0,12).map((o,i)=>pRow(o,i,true)).join('')||'<div class="sm mut" style="padding:12px 0">Nenhum local comparável neste raio.</div>'}</div>`+(validB(rowsAll).length?`<div class="stitle">Bairros na área</div>`+gList(validB(rowsAll),bk,'bairro',5):'')}
+ $('#sheetBody').innerHTML=h}
+function renderChips(){let t='';
+ if(near)t=`Perto de ${esc(near.label.split(',')[0])} · ${RAD} km`;else if(f.bairro)t=`Bairro inteiro · ${esc(cap(f.bairro))}, ${esc(f.city)}/${f.uf}`;else if(f.city)t=`Cidade inteira · ${esc(f.city)}/${f.uf}`;else if(f.uf)t=`Estado inteiro · ${esc(ufName(f.uf))}`;
+ $('#chips').innerHTML=t?`<div><span class="chip">${t}<button data-clr aria-label="Remover filtro">×</button></span></div>`:'';
+ $('#sClr').classList.toggle('hide',!(t||aIn.value))}
+const LGT={perda:'Votos a recuperar',dl:'Votação de Lula caiu',dab:'Abstenção cresceu'};let lgOpen=false;
+function renderLegend(){const dots=COLS.map((c,i)=>`<i style="width:${8+i*3}px;height:${8+i*3}px;background:${c};${i===0?'border:1px solid #c9b86a':''}"></i>`).join('');
+ $('#legend').innerHTML=`<div class="lg-h"><b>${LGT[mk]}</b><button data-lg>Trocar ›</button></div><div class="lg-d">${dots}</div><div class="lg-l"><span>poucos</span><span>muitos</span></div>
+ ${lgOpen?`<div class="lg-menu">${Object.keys(LGT).map(k=>`<button data-m="${k}" class="${k===mk?'on':''}">${LGT[k]}${k==='perda'?' (padrão)':''}</button>`).join('')}</div>`:''}`}
 function render(fit){
- const k=$('#fMet').value,fn=M[k].f;rowsAll=selRows();
+ const fn=M[mk].f;rowsAll=selRows();
  cur=rowsAll.filter(o=>o.lat!=null).sort((x,y)=>fn(y)-fn(x));missing=rowsAll.length-cur.length;
- groups=topBy(rowsAll,o=>o.city+'|'+o.bairro+'|'+o.uf,Infinity);if(k!=='perda')groups.sort((x,y)=>fn(y.o)-fn(x.o));
- SC=[];
- if(near)SC.push({escopo:'Área',nome:`${near.label.split(',')[0]} (raio ${near.r} km)`,o:agg(rowsAll),top:topBy(rowsAll,o=>o.bairro,3),key:'bairro',sub:'bairros'});
- else{if(f.uf){const r=byUf.get(f.uf)||[];SC.push({escopo:'Estado',nome:f.uf,o:agg(r),top:topBy(r,o=>o.city,3),key:'city',sub:'municípios'})}
-  if(f.city){const r=cityRows();SC.push({escopo:'Município',nome:f.city+'/'+f.uf,o:agg(r),top:topBy(r,o=>o.bairro,3),key:'bairro',sub:'bairros'})}}
- shownN=40;renderSide();
- const b=brk(k);$('#leg').innerHTML=COLS.map((c,i)=>`<span><i style="background:${c}"></i>${i===0?'≤ '+fmt(b[0]):i===4?'> '+fmt(b[3]):fmt(b[i-1])+'–'+fmt(b[i])}</span>`).join('');
+ groups=topBy(rowsAll,o=>o.city+'|'+o.bairro+'|'+o.uf,Infinity);
+ renderSheet();renderChips();renderLegend();
  nearLay.clearLayers();let nb=null;
  if(near){const c=L.circle([near.lat,near.lon],{radius:near.r*1000,color:'#3b6f8f',weight:2,dashArray:'6 6',fillOpacity:.05});nearLay.addLayer(c);
-  nearLay.addLayer(L.circleMarker([near.lat,near.lon],{radius:8,color:'#fff',weight:2,fillColor:'#2a6fdb',fillOpacity:1}).bindTooltip('Endereço buscado'));nb=c.getBounds()}
+  nearLay.addLayer(L.circleMarker([near.lat,near.lon],{radius:8,color:'#fff',weight:2,fillColor:'#2a6fdb',fillOpacity:1}).bindTooltip('Ponto buscado'));nb=c.getBounds()}
  if(fit&&(nb||cur.length))map.fitBounds(nb||boundsOf(cur),{animate:false,maxZoom:16,padding:[20,20]});
  drawSoon()}
-$('#side').addEventListener('click',e=>{
- if(e.target.id==='more'){shownN+=40;renderSide();return}
- const h=e.target.closest('.h');if(!h)return;
- const pts=groups[+h.dataset.g].rs.filter(o=>o.lat!=null);if(MOB())setView('map');if(pts.length){map.invalidateSize();map.fitBounds(boundsOf(pts),{maxZoom:17,padding:[40,40]})}});
-$('#side').addEventListener('toggle',e=>{const d=e.target;if(d.tagName!=='DETAILS'||!d.open)return;
- const ul=d.querySelector('ul');if(ul.dataset.done)return;ul.dataset.done=1;
- ul.innerHTML=groups[+d.dataset.g].rs.slice().sort((x,y)=>y.perda-x.perda).slice(0,40).map(x=>
-  `<li><b>${esc(x.nm)}</b><br><span class="mut">${esc(x.end)} · Zona ${x.zona}</span><br>Perda est. ${fmt(x.perda)} · abst. ${pc(x.r22)} → ${pc(x.r26)} · Lula ${sg(x.dl)}</li>`).join('')},true);
-const clearNear=()=>{near=null;nearLay.clearLayers();$('#bClr').classList.add('hide');$('#nearmsg').textContent=''};
-$('#fMet').onchange=()=>render(false);
-/* ---------- PERTO DE VOCÊ ---------- */
-const msg=t=>$('#nearmsg').textContent=t;
-function setNear(lat,lon,label){near={lat,lon,label,r:+$('#fRad').value};Object.keys(f).forEach(k=>f[k]='');refill();
- $('#bClr').classList.remove('hide');render(true)}
-async function geocode(q){const r=await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=br&accept-language=pt-BR&q='+encodeURIComponent(q));
- const j=await r.json();return j[0]?{lat:+j[0].lat,lon:+j[0].lon,label:j[0].display_name}:null}
-async function doSearch(){const q=$('#addr').value.trim();if(!q)return;msg('Buscando…');
- try{const g=await geocode(q);if(!g)return msg('Endereço não encontrado. Tente incluir cidade e UF.');setNear(g.lat,g.lon,g.label);msg(g.label)}
- catch(e){msg('Falha na busca (requer internet): '+e.message)}}
-$('#bAddr').onclick=doSearch;const aIn=$('#addr'),aUl=$('#addrList');let aLoc=[],aPh=[],aItems=[],aHi=-1,aT,aCtl,aSeq=0,aMsg='',GEO=null,LOCX=null;
+/* painel (gaveta no celular) */
+const sideEl=$('#side'),sOpen=v=>{sideEl.classList.toggle('open',v);$('#s2').classList.toggle('sheetopen',v);$('#shBtn').textContent=v?'Voltar ao mapa ▼':'Ver resumo ▲'};
+$('#sheetHead').onclick=()=>sOpen(!sideEl.classList.contains('open'));
+$('#sheetHead').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();sOpen(!sideEl.classList.contains('open'))}});
+function flyTo(pts){if(!pts.length)return;if(MOB())sOpen(false);map.invalidateSize();map.fitBounds(boundsOf(pts),{maxZoom:17,padding:[40,40]})}
+$('#sheetBody').addEventListener('click',e=>{
+ const g=e.target.closest('[data-g]');if(g){const d=g.nextElementSibling,open=d.classList.toggle('hide');g.setAttribute('aria-expanded',String(!open));
+  if(!d.dataset.done){d.dataset.done=1;const it=LST[+g.dataset.g];d.innerHTML=gDet(it.G,it.mode)}return}
+ const dt=e.target.closest('[data-det]');if(dt){const d=$('#sdet'+dt.dataset.det),h=d.classList.toggle('hide');dt.textContent=h?'Ver detalhes ▾':'Ocultar detalhes ▴';dt.setAttribute('aria-expanded',String(!h));return}
+ const vt=e.target.closest('[data-vt]');if(vt){vtab=vt.dataset.vt;pageN=30;renderSheet();return}
+ if(e.target.closest('[data-more]')){pageN+=30;renderSheet();return}
+ const fl=e.target.closest('[data-fly]');if(fl){flyTo(LST[+fl.dataset.fly].G.rs.filter(o=>o.lat!=null));return}
+ const pt=e.target.closest('[data-pt]');if(pt){const o=LST[+pt.dataset.pt].o;if(MOB())sOpen(false);map.invalidateSize();map.setView([o.lat,o.lon],17);L.popup({maxWidth:300}).setLatLng([o.lat,o.lon]).setContent(tip(o)).openOn(map)}});
+/* legenda e troca de medida */
+$('#legend').addEventListener('click',e=>{if(e.target.closest('[data-lg]')){lgOpen=!lgOpen;renderLegend();return}
+ const m=e.target.closest('[data-m]');if(m){mk=m.dataset.m;lgOpen=false;pageN=30;render(false)}});
+/* ---------- BUSCA ÚNICA: áreas (filtram tudo) e pontos (raio de 2 km) ---------- */
+const aIn=$('#addr'),aUl=$('#addrList');let aLoc=[],aPh=[],aItems=[],aHi=-1,aT,aCtl,aSeq=0,aMsg='',GEO=null,LOCX=null;
 function geoIdx(){if(GEO)return;const m=new Map();
  P.forEach(o=>{const kc=o.uf+'|'+o.city;if(!m.has(kc))m.set(kc,{k:'city',uf:o.uf,city:o.city,n:nrm(o.city)});
   if(o.bairro&&o.bairro[0]!=='('){const kb=kc+'|'+o.bairro;if(!m.has(kb))m.set(kb,{k:'bairro',uf:o.uf,city:o.city,bairro:o.bairro,n:nrm(o.bairro)})}});
  GEO=[...m.values()];LOCX=P.map(o=>nrm(o.nm+' '+o.end))}
 function localSug(q){geoIdx();const n=nrm(q),sc=x=>x.n.startsWith(n)?0:1,out=[];
  const pk=(k,max)=>GEO.filter(x=>x.k===k&&x.n.includes(n)).sort((x,y)=>sc(x)-sc(y)).slice(0,max);
- pk('city',3).forEach(x=>out.push({g:'Municípios',k:'city',t:x.city,s:x.uf,uf:x.uf,city:x.city}));
- pk('bairro',3).forEach(x=>out.push({g:'Bairros',k:'bairro',t:cap(x.bairro),s:x.city+'/'+x.uf,uf:x.uf,city:x.city,bairro:x.bairro}));
- let c=0;for(let i=0;i<P.length&&c<5;i++){const o=P[i];if(o.lat!=null&&LOCX[i].includes(n)){out.push({g:'Locais de votação',k:'local',t:o.nm,s:o.end+' · '+cap(o.bairro)+' · '+o.city+'/'+o.uf,lat:o.lat,lon:o.lon,label:o.nm});c++}}
+ UFS.filter(u=>nrm(UFN[u]||u).includes(n)||nrm(u)===n).slice(0,2).forEach(u=>out.push({g:'area',k:'uf',t:ufName(u),s:'Estado · '+u,hint:'todo o estado',uf:u}));
+ pk('city',4).forEach(x=>out.push({g:'area',k:'city',t:x.city,s:'Cidade · '+x.uf,hint:'toda a cidade',uf:x.uf,city:x.city}));
+ pk('bairro',4).forEach(x=>out.push({g:'area',k:'bairro',t:cap(x.bairro),s:'Bairro · '+x.city+'/'+x.uf,hint:'todo o bairro',uf:x.uf,city:x.city,bairro:x.bairro}));
+ let c=0;for(let i=0;i<P.length&&c<4;i++){const o=P[i];if(o.lat!=null&&LOCX[i].includes(n)){out.push({g:'pt',k:'local',t:o.nm,s:'Local de votação · '+o.end+' · '+o.city+'/'+o.uf,hint:'raio '+RAD+' km',lat:o.lat,lon:o.lon,label:o.nm});c++}}
  return out}
-function paintAddr(){aItems=[...aLoc,...aPh];let h='',last='';
- aItems.forEach((it,i)=>{const g=it.g||'Endereços (OpenStreetMap)';if(g!==last){h+=`<li class="gh">${g}</li>`;last=g}
-  h+=`<li role="option" data-i="${i}" class="${i===aHi?'on':''}"><b>${esc(it.t)}</b><span>${esc(it.s)}</span></li>`});
- if(aMsg)h+=`<li class="none">${esc(aMsg)}</li>`;aUl.innerHTML=h;aUl.classList.toggle('hide',!h)}
+function paintAddr(){aItems=[{g:'geo',k:'geo',t:'Usar minha localização',s:'',hint:'raio '+RAD+' km'},...aLoc.filter(x=>x.g==='area'),...aLoc.filter(x=>x.g==='pt'),...aPh];
+ const GL={geo:'',area:'MOSTRAR TODA A ÁREA',pt:'PERTO DE UM PONTO (raio de '+RAD+' km)'};let h='',last='';
+ aItems.forEach((it,i)=>{const g=it.g==='geo'?'geo':it.g||'pt';if(g!==last&&GL[g]){h+=`<li class="gh2" style="padding:10px 12px 4px;font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--mut)">${GL[g]}</li>`}last=g;
+  h+=`<li role="option" data-i="${i}" class="${i===aHi?'on':''}"><b>${esc(it.t)}</b>${it.s?`<span>${esc(it.s)}</span>`:''}<small style="float:right;color:var(--mut);font-size:11px">${esc(it.hint||'')}</small></li>`});
+ if(aMsg)h+=`<li class="none">${esc(aMsg)}</li>`;aUl.innerHTML=h;aUl.classList.remove('hide')}
 const closeAddr=()=>aUl.classList.add('hide');
 async function photon(q,my){try{if(aCtl)aCtl.abort();aCtl=new AbortController();const c=map.getCenter();
-  const url='https://photon.komoot.io/api/?limit=6&bbox=-74,-34,-34,6&q='+encodeURIComponent(q)+(map.getZoom()>=7?`&lat=${c.lat.toFixed(4)}&lon=${c.lng.toFixed(4)}`:'');
+  const url='https://photon.komoot.io/api/?limit=5&bbox=-74,-34,-34,6&q='+encodeURIComponent(q)+(map.getZoom()>=7?`&lat=${c.lat.toFixed(4)}&lon=${c.lng.toFixed(4)}`:'');
   const j=await (await fetch(url,{signal:aCtl.signal})).json();if(my!==aSeq)return;
   aPh=(j.features||[]).map(ft=>{const p=ft.properties,[lon,lat]=ft.geometry.coordinates,st=p.street?p.street+(p.housenumber?', '+p.housenumber:''):'',t=p.name||st||p.city||'',
-   sub=[p.name&&st&&p.name!==p.street?st:'',p.district,p.city&&p.city!==t?p.city:'',p.state].filter(Boolean).join(', ');return{k:'end',t,s:sub,lat,lon,label:[t,sub].filter(Boolean).join(', ')}});
+   sub=[p.name&&st&&p.name!==p.street?st:'',p.district,p.city&&p.city!==t?p.city:'',p.state].filter(Boolean).join(', ');return{g:'pt',k:'end',t,s:'Endereço · '+sub,hint:'raio '+RAD+' km',lat,lon,label:[t,sub].filter(Boolean).join(', ')}});
   aMsg=aPh.length||aLoc.length?'':'Nenhuma sugestão. Tente incluir cidade e UF.'}
- catch(e){if(e.name==='AbortError')return;aPh=[];aMsg='Sugestões de endereço indisponíveis (requer internet).'}
+ catch(e){if(e.name==='AbortError')return;aPh=[];aMsg=aLoc.length?'':'Sugestões de endereço indisponíveis (requer internet).'}
  paintAddr()}
-function pickAddr(i){const it=aItems[i];if(!it)return;closeAddr();
- aIn.value=it.k==='bairro'?`${it.t}, ${it.s}`:it.k==='city'?`${it.t}/${it.s}`:(it.label||it.t);
- if(it.k==='city'||it.k==='bairro'){clearNear();f.uf=it.uf;f.city=it.city;f.zona='';f.bairro=it.k==='bairro'?it.bairro:'';refill();render(true);msg('Filtro aplicado: '+aIn.value)}
- else{setNear(it.lat,it.lon,it.label||it.t);msg(it.label||it.t)}}
-aIn.addEventListener('input',()=>{clearTimeout(aT);const q=aIn.value.trim();aHi=-1;
- if(q.length<3){aLoc=[];aPh=[];aMsg='';return paintAddr()}
- aLoc=localSug(q);aPh=[];aMsg='Buscando endereços…';paintAddr();const my=++aSeq;aT=setTimeout(()=>photon(q,my),380)});
-aIn.addEventListener('focus',()=>{if(aItems.length)paintAddr()});
-aIn.addEventListener('blur',()=>setTimeout(closeAddr,150));
+const setArea=(uf,city,bairro,label)=>{near=null;f.uf=uf;f.city=city||'';f.bairro=bairro||'';aIn.value=label;vtab='';pageN=30;closeAddr();render(true)};
+function setNear(lat,lon,label){near={lat,lon,label,r:RAD};f.uf=f.city=f.bairro='';aIn.value=label.split(',')[0];vtab='main';pageN=30;closeAddr();render(true)}
+function geolocate(){if(!navigator.geolocation){aMsg='Seu navegador não oferece localização.';return paintAddr()}
+ navigator.geolocation.getCurrentPosition(p=>setNear(p.coords.latitude,p.coords.longitude,'Sua localização'),er=>{aMsg='Não foi possível obter a localização ('+er.message+'). Abra via http://localhost ou hospedado (https) e permita o acesso.';aUl.classList.remove('hide');paintAddr()})}
+function pickAddr(i){const it=aItems[i];if(!it)return;
+ if(it.k==='geo')return geolocate();
+ if(it.k==='uf')setArea(it.uf,'','',it.t);else if(it.k==='city')setArea(it.uf,it.city,'',it.t);else if(it.k==='bairro')setArea(it.uf,it.city,it.bairro,it.t);
+ else setNear(it.lat,it.lon,it.label||it.t)}
+function clearAll(){near=null;f.uf=f.city=f.bairro='';aIn.value='';aLoc=[];aPh=[];aMsg='';vtab='';pageN=30;closeAddr();render(true)}
+async function doSearch(){const q=aIn.value.trim();if(!q)return;aMsg='Buscando…';paintAddr();
+ try{const r=await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=br&accept-language=pt-BR&q='+encodeURIComponent(q)),j=await r.json();
+  if(!j[0]){aMsg='Endereço não encontrado. Tente incluir cidade e UF.';return paintAddr()}setNear(+j[0].lat,+j[0].lon,j[0].display_name)}
+ catch(e){aMsg='Falha na busca (requer internet).';paintAddr()}}
+aIn.addEventListener('input',()=>{clearTimeout(aT);const q=aIn.value.trim();aHi=-1;$('#sClr').classList.toggle('hide',!aIn.value&&!near&&!f.uf);
+ if(q.length<2){aLoc=[];aPh=[];aMsg='';return paintAddr()}
+ aLoc=localSug(q);aPh=[];aMsg=q.length>=3?'Buscando endereços…':'';paintAddr();if(q.length>=3){const my=++aSeq;aT=setTimeout(()=>photon(q,my),380)}});
+aIn.addEventListener('focus',()=>{aIn.select();paintAddr()});
+aIn.addEventListener('blur',()=>setTimeout(closeAddr,160));
 aIn.addEventListener('keydown',e=>{const n=aItems.length;
  if((e.key==='ArrowDown'||e.key==='ArrowUp')&&n){e.preventDefault();const d=e.key==='ArrowDown';aHi=aHi<0?(d?0:n-1):(aHi+(d?1:-1)+n)%n;paintAddr();const el=aUl.querySelector('.on');if(el)el.scrollIntoView({block:'nearest'})}
- else if(e.key==='Enter'){e.preventDefault();if(aHi>=0)pickAddr(aHi);else{closeAddr();doSearch()}}
+ else if(e.key==='Enter'){e.preventDefault();if(aHi>=0)pickAddr(aHi);else if(aItems.length>1)pickAddr(1);else doSearch()}
  else if(e.key==='Escape')closeAddr()});
 aUl.addEventListener('pointerdown',e=>{const li=e.target.closest('li[data-i]');if(!li)return;e.preventDefault();pickAddr(+li.dataset.i)});
-$('#bGeo').onclick=()=>{if(!navigator.geolocation)return msg('Seu navegador não oferece geolocalização.');msg('Obtendo localização…');
- navigator.geolocation.getCurrentPosition(p=>{setNear(p.coords.latitude,p.coords.longitude,'Sua localização');msg('Usando sua localização')},er=>msg('Não foi possível obter a localização ('+er.message+'). Abra via http://localhost e permita o acesso.'))};
-$('#bClr').onclick=()=>{clearNear();render(true)};
-$('#fRad').onchange=()=>{if(near){near.r=+$('#fRad').value;render(true)}};
-let ctrlInit=false;
-function setView(v){document.querySelector('.split').dataset.v=v;$('#segM').classList.toggle('on',v==='map');$('#segL').classList.toggle('on',v==='list');
- setTimeout(()=>{map.invalidateSize();drawSoon()},30)}
-$('#segM').onclick=()=>setView('map');$('#segL').onclick=()=>setView('list');
-$('#bCtrl').onclick=()=>$('#ctrl').classList.toggle('closed');
-let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{map.invalidateSize();drawSoon()},150)});
+$('#bGeo').onclick=geolocate;$('#sClr').onclick=clearAll;
+$('#chips').addEventListener('click',e=>{if(e.target.closest('[data-clr]'))clearAll()});
+/* navegação */
+function gotoMap(sel){closeOv();near=null;f.uf=sel.uf;f.city=sel.city||'';f.bairro=sel.bairro||'';aIn.value=sel.bairro?cap(sel.bairro):sel.city||ufName(sel.uf);vtab='';pageN=30;tab(2)}
 function tab(n){$('#s1').classList.toggle('hide',n!==1);$('#s2').classList.toggle('hide',n!==2);
- $('#t1').classList.toggle('on',n===1);$('#t2').classList.toggle('on',n===2);
- if(n===2){if(!ctrlInit){ctrlInit=true;if(MOB())$('#ctrl').classList.add('closed')}
-  refill();setTimeout(()=>{map.invalidateSize();render(true)},50)}}
-$('#t1').onclick=()=>tab(1);$('#t2').onclick=()=>tab(2);
-$('#topm').onclick=e=>{const i=e.target.dataset.m;if(i==null)return;const r=tm[+i].rs[0];clearNear();f.uf=r.uf;f.city=r.city;f.zona=f.bairro='';tab(2)};
-$('#topb').onclick=e=>{const i=e.target.dataset.b;if(i==null)return;const r=bt[+i].rs[0];clearNear();f.uf=r.uf;f.city=r.city;f.zona='';f.bairro=r.bairro;tab(2)};
+ ['t1','t2'].forEach((id,k)=>$('#'+id).classList.toggle('on',n===k+1));['bn1','bn2'].forEach((id,k)=>$('#'+id).classList.toggle('on',n===k+1));
+ root.classList.toggle('nsc',n===2&&MOB());closeOv();if(n===1)window.scrollTo(0,0);
+ if(n===2){sOpen(false);setTimeout(()=>{map.invalidateSize();render(true)},50)}}
+$('#t1').onclick=$('#bn1').onclick=()=>tab(1);$('#t2').onclick=$('#bn2').onclick=()=>tab(2);
+let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{root.classList.toggle('nsc',!$('#s2').classList.contains('hide')&&MOB());map.invalidateSize();drawSoon()},150)});
+
 </script></body></html>
