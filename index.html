@@ -134,9 +134,9 @@ h2.sec{font-size:15px;margin:18px 2px 8px}.center{display:flex;justify-content:c
 @media(max-width:900px){#s1 .r1,#s1 .r2{grid-template-columns:1fr}}
 @media(max-width:700px){
  .desk{display:none!important}#t1,#t2{display:none}header{padding:6px 12px;gap:8px;min-height:48px;box-sizing:border-box}h1{font-size:15px}h1 small{display:none}
- #topnav{margin-left:auto}main{padding:12px 12px 80px}body{padding-bottom:64px}
+ header{flex-wrap:nowrap;justify-content:space-between}h1{min-width:0}#topnav{margin-left:auto;flex:none}main{padding:12px 12px 80px}body{padding-bottom:64px}
  #bnav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));position:fixed;left:0;right:0;bottom:0;height:64px;z-index:2600;background:var(--card);border-top:1px solid var(--line)}
- .bn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:0;border-radius:0;background:transparent;color:var(--mut);font-size:12px;font-weight:500;min-height:0}.bn.on{color:var(--ink);font-weight:700;box-shadow:inset 0 3px 0 var(--acc)}
+ .bn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:0;border-radius:0;background:transparent;color:var(--mut);font-size:12px;font-weight:500;min-height:0}.bn.on{color:var(--ink);font-weight:700;box-shadow:inset 0 3px 0 var(--acc);background:transparent}
  #s2:not(.hide){position:fixed;left:0;right:0;top:48px;bottom:64px;z-index:1200;background:var(--bg)}
  main:has(#s2:not(.hide)){padding:0}.mapwrap{display:block;position:relative;height:100%}
  .mapcol{position:absolute;inset:0;width:auto;height:auto;min-height:0}#map{border-radius:0;border:0}
@@ -153,7 +153,7 @@ h2.sec{font-size:15px;margin:18px 2px 8px}.center{display:flex;justify-content:c
 
 </style></head><body>
 <script>window.onerror=(m,s,l)=>document.body.insertAdjacentHTML('afterbegin','<pre style="background:#fee;color:#900;padding:10px;margin:0;white-space:pre-wrap">Erro no dashboard: '+m+' (linha '+l+')</pre>')</script>
-<header id="hdr"><h1>Lula × Bolsonaro<small>2º turno 2022 → 1º turno 2026 · por local de votação · gerado em 09/10/2026 09:29</small></h1>
+<header id="hdr"><h1>Lula × Bolsonaro<small>2º turno 2022 → 1º turno 2026 · por local de votação · gerado em 09/10/2026 09:50</small></h1>
 <nav id="topnav"><button id="t1" class="on">Resumo</button><button id="t2">Mapa por local</button><button id="th" title="Alternar tema claro/escuro" aria-label="Alternar tema claro ou escuro">◐<span class="desk"> Tema</span></button><button class="desk" data-x="png" data-k="tela" title="Imagem da aba atual">PNG da tela</button></nav></header>
 <main>
 <section id="s1">
@@ -199,10 +199,10 @@ h2.sec{font-size:15px;margin:18px 2px 8px}.center{display:flex;justify-content:c
  <p class="note desk" id="mapnote"></p>
 </section>
 </main>
-<nav id="bnav" aria-label="Navegação principal">
+<div id="bnav" role="navigation" aria-label="Navegação principal">
  <button id="bn1" class="bn on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="4" rx="1.5"/><rect x="13" y="10" width="7" height="10" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/></svg>Resumo</button>
  <button id="bn2" class="bn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Mapa por local</button>
-</nav>
+</div>
 <div id="ovl" class="ovl hide"><div class="ovl-box" id="ovlBox" role="dialog" aria-modal="true"></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -223,17 +223,17 @@ const FM={s:v=>v==null?'':v,n:v=>v==null?'':fmt(v),d:v=>v==null?'':sg(v),p:v=>v=
 const asc=s=>String(s).replace(/−/g,'-').replace(/→/g,'->').replace(/·/g,'-').replace(/Δ/g,'Var.');
 const KS=['a22','b22','l22','v22','o22','a26','b26','l26','v26','o26','cu26','rs26','ze26','ca26'];
 function derive(o){o.r22=o.a22?o.b22/o.a22:0;o.r26=o.a26?o.b26/o.a26:0;
- if(o.perda===undefined)o.perda=Math.max(o.a26*(o.r26-o.r22),0)*(o.l22/Math.max(o.a22-o.b22,1));
- o.dl=o.l26-o.l22;o.dab=(o.r26-o.r22)*100;o.p22=o.v22?o.l22/o.v22:0;o.p26=o.v26?o.l26/o.v26:0;
+ if(o.pab===undefined)o.pab=Math.max(o.a26*(o.r26-o.r22),0)*(o.l22/Math.max(o.a22-o.b22,1));
+ o.dl=o.l26-o.l22;o.perda=Math.max(-o.dl,0);o.dab=(o.r26-o.r22)*100;o.p22=o.v22?o.l22/o.v22:0;o.p26=o.v26?o.l26/o.v26:0;
  o.q22=o.v22?o.o22/o.v22:0;o.q26=o.v26?o.o26/o.v26:0;
  o.ou26=Math.max(o.v26-o.l26-o.o26-o.cu26-o.rs26-o.ze26-o.ca26,0);const z=o.v26||1;o.pcu=o.cu26/z;o.prs=o.rs26/z;o.pze=o.ze26/z;o.pca=o.ca26/z;o.pou=o.ou26/z;return o}
-function agg(rows){const o={n:rows.length,perda:0};KS.forEach(k=>o[k]=0);
- rows.forEach(r=>{KS.forEach(k=>o[k]+=r[k]);o.perda+=r.perda});return derive(o)}
+function agg(rows){const o={n:rows.length,pab:0};KS.forEach(k=>o[k]=0);
+ rows.forEach(r=>{KS.forEach(k=>o[k]+=r[k]);o.pab+=r.pab});return derive(o)}
 const PA=D.rows.map((r,i)=>derive({i,uf:D.uf[r[0]],city:D.city[r[1]],bairro:D.bairro[r[2]],zona:r[3],lat:r[4],lon:r[5],
  nm:r[6]||'',end:r[7]||'',a22:r[8],b22:r[9],l22:r[10],v22:r[11],o22:r[12],a26:r[13],b26:r[14],l26:r[15],v26:r[16],o26:r[17],cu26:r[18],rs26:r[19],ze26:r[20],ca26:r[21]}));
 const P=PA.filter(o=>o.uf!=='ZZ'); // mapa/filtros: sem exterior
 const M={perda:{n:'Perda estimada p/ abstenção (votos de Lula)',f:o=>o.perda},
- dl:{n:'Queda de votos de Lula',f:o=>Math.max(-o.dl,0)},
+ pab:{n:'Parte na abstenção (estimativa)',f:o=>o.pab},
  dab:{n:'Aumento da abstenção (p.p.)',f:o=>Math.max(o.dab,0)}};
 const COLS=['#fff3b0','#fdc65c','#f59a3b','#d2641f','#8f3a14'],BR={};
 function brk(k){if(!BR[k]){const v=P.map(M[k].f).filter(x=>x>0).sort((a,b)=>a-b);
@@ -246,9 +246,9 @@ let _rm,_rb;const RM=()=>_rm||(_rm=topBy(PA,o=>o.uf+'|'+o.city,Infinity)),RB=()=
 
 /* ---------- EXPORTAÇÃO ---------- */
 const xb=(k,tbl)=>`<span class="xb">${tbl?`<button data-x="pdf" data-k="${k}" title="Baixar PDF">PDF</button><button data-x="xls" data-k="${k}" title="Baixar Excel">Excel</button>`:''}<button data-x="png" title="Baixar imagem">PNG</button></span>`;
-const AGGH=['Aptos 2022','Aptos 2026','Abstenção 2022','Abstenção 2026','Var. abstenção (p.p.)','Lula 2022','Lula 2026','Var. Lula','Lula % válidos 2022','Lula % válidos 2026','Bolsonaro 2022','Bolsonaro 2026','Bolsonaro % válidos 2022','Bolsonaro % válidos 2026','Cury 2026','Renan Santos 2026','Zema 2026','Caiado 2026','Outros 2026','Cury % válidos 2026','Renan Santos % válidos 2026','Zema % válidos 2026','Caiado % válidos 2026','Outros % válidos 2026','Votos a recuperar (estimativa)'];
-const AGGT=['n','n','p','p','q','n','n','d','p','p','n','n','p','p','n','n','n','n','n','p','p','p','p','p','n'];
-const aggVals=o=>[o.a22,o.a26,o.r22,o.r26,o.dab,o.l22,o.l26,o.dl,o.p22,o.p26,o.o22,o.o26,o.q22,o.q26,o.cu26,o.rs26,o.ze26,o.ca26,o.ou26,o.pcu,o.prs,o.pze,o.pca,o.pou,o.perda];
+const AGGH=['Aptos 2022','Aptos 2026','Abstenção 2022','Abstenção 2026','Var. abstenção (p.p.)','Lula 2022','Lula 2026','Var. Lula','Lula % válidos 2022','Lula % válidos 2026','Bolsonaro 2022','Bolsonaro 2026','Bolsonaro % válidos 2022','Bolsonaro % válidos 2026','Cury 2026','Renan Santos 2026','Zema 2026','Caiado 2026','Outros 2026','Cury % válidos 2026','Renan Santos % válidos 2026','Zema % válidos 2026','Caiado % válidos 2026','Outros % válidos 2026','Votos a recuperar (Lula 2022 − Lula 2026)','Parte na abstenção (estimativa)'];
+const AGGT=['n','n','p','p','q','n','n','d','p','p','n','n','p','p','n','n','n','n','n','p','p','p','p','p','n','n'];
+const aggVals=o=>[o.a22,o.a26,o.r22,o.r26,o.dab,o.l22,o.l26,o.dl,o.p22,o.p26,o.o22,o.o26,o.q22,o.q26,o.cu26,o.rs26,o.ze26,o.ca26,o.ou26,o.pcu,o.prs,o.pze,o.pca,o.pou,o.perda,o.pab];
 function locSpec(t,rows,dist){const h=['UF','Município','Zona','Bairro','Local de votação','Endereço','Latitude','Longitude',...AGGH],ty=['s','s','s','s','s','s','x','x',...AGGT];
  if(dist){h.push('Distância (km)');ty.push('x')}
  return {t,sheet:'Locais',h,ty,r:rows.map(o=>{const r=[ufl(o),o.city,o.zona,cap(o.bairro),o.nm,o.end,o.lat,o.lon,...aggVals(o)];if(dist)r.push(o.dist);return r})}}
@@ -271,7 +271,7 @@ function xls(specs,name){if(!window.XLSX)return need('Excel');const wb=XLSX.util
  XLSX.writeFile(wb,name+'_'+stamp()+'.xlsx')}
 function pdf(sp,name){if(!window.jspdf)return need('PDF');const LIM=1500,doc=new window.jspdf.jsPDF({orientation:sp.h.length>6?'l':'p',unit:'pt',format:'a4'});
  doc.setFontSize(13);doc.text(asc(sp.t),36,36);doc.setFontSize(8);
- doc.text(asc(sp.r.length>LIM?`Primeiras ${LIM} de ${sp.r.length} linhas. Baixe o Excel para a tabela completa.`:'Fonte: TSE (dados abertos). Cálculos próprios; perda estimada é contrafactual.'),36,50);
+ doc.text(asc(sp.r.length>LIM?`Primeiras ${LIM} de ${sp.r.length} linhas. Baixe o Excel para a tabela completa.`:'Fonte: TSE (dados abertos). Cálculos próprios; votos a recuperar = votos de Lula em 2022 menos em 2026 (zero onde cresceu).'),36,50);
  doc.autoTable({head:[sp.h.map(asc)],body:sp.r.slice(0,LIM).map(r=>r.map((v,i)=>asc(FM[sp.ty[i]](v)))),startY:60,styles:{fontSize:7,cellPadding:3},headStyles:{fillColor:[59,111,143]},margin:{left:36,right:36}});
  doc.save(name+'_'+stamp()+'.pdf')}
 async function png(el,name,asPdf){if(!window.html2canvas)return need('imagem');
@@ -293,7 +293,7 @@ $('#th').onclick=()=>{root.classList.toggle('dark');try{localStorage.setItem('th
 
 /* ---------- RESUMO ---------- */
 const a=S.y22,b=S.y26,ar=a.abst/a.aptos,br=b.abst/b.aptos;
-const perdaTot=PA.reduce((s,o)=>s+o.perda,0);
+const perdaTot=PA.reduce((s,o)=>s+o.pab,0); // estimativa da parte que está na abstenção
 const mi=(n,d=1)=>{const v=Math.abs(n);return v>=1e6?(n/1e6).toFixed(d).replace('.',',')+' mi':v>=1e3?fmt(n/1e3)+' mil':fmt(n)};
 const miP=n=>{const v=Math.abs(n);return v>=1e6?[(n/1e6).toFixed(1).replace('.',','),'milhões']:v>=1e3?[fmt(n/1e3),'mil']:[fmt(n),'votos']};
 const sgM=n=>(n>0?'+':n<0?'−':'')+mi(Math.abs(n));
@@ -322,14 +322,14 @@ $('#kpis').innerHTML=kp('Eleitorado apto',fmt(b.aptos),`2022: ${fmt(a.aptos)} ·
  +kp('Abstenção',pc(br),`2022: ${pc(ar)} · <b class="${br>ar?'up':'dn'}">${pp((br-ar)*100)}</b>`)
  +kp('Votos de Lula',fmt(b.lula),`2º turno 2022: ${fmt(a.lula)} · <b class="${b.lula<a.lula?'up':'dn'}">${sg(b.lula-a.lula)}</b>`)
  +kp('Votos de Bolsonaro',fmt(b.opp),`2º turno 2022 (Jair): ${fmt(a.opp)} · <b>${sg(b.opp-a.opp)}</b> (2026: Flávio)`)
- +kp('Votos a recuperar (abstenção)',fmt(perdaTot),`votos de Lula · estimativa · cobre ${pc(S.cover)} dos válidos de 2026`);
+ +kp('Parte na abstenção (estimativa)',fmt(perdaTot),`votos de Lula · cobre ${pc(S.cover)} dos válidos de 2026`);
 const mx=Math.max(...S.cands.map(c=>c.v));
 $('#cands').innerHTML=S.cands.map(c=>`<div class="bar"><span class="l" title="${esc(c.nome)}">${esc(cap(c.nome))} (${c.n})</span><i style="width:${c.v/mx*45}%"></i><b>${pc(c.v/b.validos)} · ${fmt(c.v)}</b></div>`).join('')+
  `<div class="bar"><span class="l">Demais nanicos</span><i style="width:${S.outros/mx*45}%;background:var(--mut)"></i><b>${pc(S.outros/b.validos)} · ${fmt(S.outros)}</b></div><div class="note">Brancos: ${fmt(b.brancos)} · Nulos: ${fmt(b.nulos)}</div>`;
 CMP=[['Eleitores aptos',a.aptos,b.aptos],['Comparecimento',a.aptos-a.abst,b.aptos-b.abst],['Abstenções',a.abst,b.abst],['Votos de Lula',a.lula,b.lula],['Votos de Bolsonaro',a.opp,b.opp],['Nanicos',Math.max(a.validos-a.lula-a.opp,0),nan26],['Votos válidos',a.validos,b.validos],['Brancos',a.brancos,b.brancos],['Nulos',a.nulos,b.nulos]];
 $('#xcmp').innerHTML=xb('cmp',true);
 $('#cmp').innerHTML=`<tr><th></th><th>2º t. 2022</th><th>1º t. 2026</th><th>Δ</th><th>Δ%</th></tr>`+CMP.map(([n,x,y])=>`<tr><td>${n}</td><td>${fmt(x)}</td><td>${fmt(y)}</td><td>${sg(y-x)}</td><td>${x?pc(y/x-1):'–'}</td></tr>`).join('');
-$('#meto').innerHTML=`<b>Como ler:</b> “votos a recuperar” é uma estimativa: se os eleitores que a mais deixaram de comparecer em 2026 (acima da taxa de abstenção de 2022) votassem como o eleitorado do local votou em 2022, quantos votos de Lula isso representaria? Os 6,5 mi (diferença entre Lula em 2022 e em 2026) são divididos assim: <i>abstenção</i> = essa estimativa; <i>nanicos</i> = o restante. É uma aproximação, não um fato observado: o 1º turno de 2026 tem mais candidatos que o 2º turno de 2022. Só entram locais que foi possível ligar entre 2022 e 2026 (cobertura acima). “Bolsonaro” = Jair Bolsonaro (2022) e Flávio Bolsonaro (2026). Nanicos = todos os candidatos de 2026 exceto Lula e Bolsonaro (Cury, Caiado, Renan Santos, Zema e os demais). O exterior entra nos totais e no ranking de cidades, mas não no mapa. Eleitorado apto de 2026: o TSE informa 39 registros duplicados após transferência temporária.`;
+$('#meto').innerHTML=`<b>Como ler:</b> “votos a recuperar” = eleitores que votaram em Lula em 2022 (2º turno) e não votaram nele em 2026 (1º turno): a diferença entre os votos de Lula nas duas eleições, em cada local, bairro, cidade ou estado (zero onde Lula cresceu). Nacionalmente são os ${mi(Math.max(lossL,0))} da mensagem principal. Eles são divididos em <i>abstenção</i> e <i>nanicos</i> por estimativa: a parte da abstenção supõe que os eleitores que a mais deixaram de comparecer (acima da taxa de abstenção de 2022) votariam como o local votou em 2022; <i>nanicos</i> = o restante. É uma aproximação, não um fato observado: o 1º turno de 2026 tem mais candidatos que o 2º turno de 2022, e a diferença líquida de Lula também esconde votos que foram para Bolsonaro, brancos e nulos. Só entram locais que foi possível ligar entre 2022 e 2026 (cobertura acima). “Bolsonaro” = Jair Bolsonaro (2022) e Flávio Bolsonaro (2026). Nanicos = todos os candidatos de 2026 exceto Lula e Bolsonaro (Cury, Caiado, Renan Santos, Zema e os demais). O exterior entra nos totais e no ranking de cidades, mas não no mapa. Eleitorado apto de 2026: o TSE informa 39 registros duplicados após transferência temporária.`;
 $('#btDet').onclick=()=>{const d=$('#detalhes'),h=d.classList.toggle('hide');$('#btDet').textContent=h?'Ver todos os detalhes ▾':'Ocultar detalhes ▴';$('#btDet').setAttribute('aria-expanded',String(!h))};
 
 /* ---------- PAINÉIS (lista das 50 e detalhes) ---------- */
@@ -346,7 +346,7 @@ function listPanel(kind){const c=kind==='cidades',L=c?top50c:top50b,tot=c?sum50c
 function detPanel(kind){
  if(kind==='abst')return ovHead('')+`<div class="ov-body"><div class="sm mut">ABSTENÇÃO</div><div class="bigline">${mi(partAbst)} <span>de votos de Lula a recuperar</span></div>
   <p>A abstenção <b>cresceu</b> de <b>${pc(ar)}</b> para <b>${pc(br)}</b>: <b>${mi(b.abst-a.abst)}</b> eleitores a mais deixaram de votar.</p>
-  <p class="sm mut">Estimativa: se os eleitores que a mais se abstiveram (acima da taxa de 2022) votassem como o local votou em 2022, esse seria o número de votos de Lula.</p>
+  <p class="sm mut">Estimativa da parte dos votos de Lula que perdeu para a abstenção: se os eleitores que a mais se abstiveram (acima da taxa de 2022) votassem como o local votou em 2022, esse seria o número de votos de Lula.</p>
   <button class="wh" data-ov="cidades"><span>Ver as 50 cidades com mais votos a recuperar</span><i>›</i></button></div>`;
  const nl=S.cands.filter(c=>c.nome!=='Lula'&&c.nome!=='Bolsonaro');
  return ovHead('')+`<div class="ov-body"><div class="sm mut">NANICOS</div><div class="bigline">${mi(partNan)} <span>de votos de Lula a recuperar (estimativa)</span></div>
@@ -371,7 +371,7 @@ P.forEach(o=>{push(byUf,o.uf,o);push(byCity,o.uf+'|'+o.city,o)});
 const srt=v=>v.sort((x,y)=>String(x).localeCompare(String(y),'pt',{numeric:true}));
 const uniq=(rows,k)=>[...new Set(rows.map(o=>o[k]))],UFS=srt(uniq(P,'uf'));
 const cityRows=()=>f.city?byCity.get(f.uf+'|'+f.city)||[]:[];
-M.perda.n='Votos a recuperar';M.dl.n='Votação de Lula caiu';M.dab.n='Abstenção cresceu';
+M.perda.n='Votos a recuperar';M.pab.n='Parte na abstenção (estimativa)';M.dab.n='Abstenção cresceu';
 const map=L.map('map',{preferCanvas:true,zoomControl:false}).setView([-14.2,-51.9],4);L.control.zoom({position:'topright'}).addTo(map);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,crossOrigin:true,referrerPolicy:'origin-when-cross-origin',attribution:'© OpenStreetMap contributors'}).addTo(map);
 if(location.protocol==='file:')document.body.insertAdjacentHTML('afterbegin','<div style="background:#fff3cd;color:#664d03;padding:8px 20px;font-size:13px">O OpenStreetMap bloqueia o mapa quando o arquivo é aberto direto do disco (file://). Rode <b>python -m http.server 8000</b> nesta pasta e abra <b>http://localhost:8000/dashboard_lula_abstencao.html</b>.</div>');
@@ -399,7 +399,7 @@ function drawMap(){const fn=M[mk].f,bd=map.getBounds(),S_=bd.getSouth(),N_=bd.ge
  $('#mapnote').textContent=(sh.length>=cap_?`Mostrando os ${fmt(cap_)} pontos com mais votos a recuperar na área visível. Aproxime o zoom ou busque uma cidade para ver os demais. `:'')+(missing?`${fmt(missing)} local(is) sem coordenadas aparecem só no resumo.`:'')}
 map.on('moveend',drawSoon);
 function boundsOf(rs){let a_=90,b_=180,c_=-90,d_=-180;rs.forEach(o=>{if(o.lat<a_)a_=o.lat;if(o.lat>c_)c_=o.lat;if(o.lon<b_)b_=o.lon;if(o.lon>d_)d_=o.lon});return [[a_,b_],[c_,d_]]}
-const mv=o=>mk==='perda'?[mi(o.perda),'a recuperar']:mk==='dl'?[mi(Math.max(-o.dl,0)),'votos a menos']:[Math.max(o.dab,0).toFixed(1).replace('.',',')+' p.p.','a mais'];
+const mv=o=>mk==='perda'?[mi(o.perda),'a recuperar']:mk==='pab'?[mi(o.pab),'via abstenção']:[Math.max(o.dab,0).toFixed(1).replace('.',',')+' p.p.','a mais'];
 function scopeOf(){
  if(near)return{kind:'near',tag:'PERTO DE',name:near.label.split(',')[0]+' · '+RAD+' km',o:agg(rowsAll)};
  if(f.bairro)return{kind:'bairro',tag:'BAIRRO',name:cap(f.bairro)+' · '+f.city+'/'+f.uf,o:agg(rowsAll)};
@@ -447,7 +447,7 @@ function renderChips(){let t='';
  if(near)t=`Perto de ${esc(near.label.split(',')[0])} · ${RAD} km`;else if(f.bairro)t=`Bairro inteiro · ${esc(cap(f.bairro))}, ${esc(f.city)}/${f.uf}`;else if(f.city)t=`Cidade inteira · ${esc(f.city)}/${f.uf}`;else if(f.uf)t=`Estado inteiro · ${esc(ufName(f.uf))}`;
  $('#chips').innerHTML=t?`<div><span class="chip">${t}<button data-clr aria-label="Remover filtro">×</button></span></div>`:'';
  $('#sClr').classList.toggle('hide',!(t||aIn.value))}
-const LGT={perda:'Votos a recuperar',dl:'Votação de Lula caiu',dab:'Abstenção cresceu'};let lgOpen=false;
+const LGT={perda:'Votos a recuperar',pab:'Parte na abstenção (estimativa)',dab:'Abstenção cresceu'};let lgOpen=false;
 function renderLegend(){const dots=COLS.map((c,i)=>`<i style="width:${8+i*3}px;height:${8+i*3}px;background:${c};${i===0?'border:1px solid #c9b86a':''}"></i>`).join('');
  $('#legend').innerHTML=`<div class="lg-h"><b>${LGT[mk]}</b><button data-lg>Trocar ›</button></div><div class="lg-d">${dots}</div><div class="lg-l"><span>poucos</span><span>muitos</span></div>
  ${lgOpen?`<div class="lg-menu">${Object.keys(LGT).map(k=>`<button data-m="${k}" class="${k===mk?'on':''}">${LGT[k]}${k==='perda'?' (padrão)':''}</button>`).join('')}</div>`:''}`}
